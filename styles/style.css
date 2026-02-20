@@ -22,6 +22,7 @@ section {
   height: 300px;
   margin: 60px auto;
   perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 article {
