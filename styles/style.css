@@ -1,5 +1,65 @@
 html {
-    --primary-color: rgb(44, 95, 0);
-    --secondary-color: rgb(0, 123, 255);
+    --background-color: #111;
+
+    --red-color: #d50000;
+    --orange-color: #ff6d00;
+    --blue-color: #2962ff;
+    --green-color: #00c853;
+    --yellow-color: #ffd600;
+    --white-color: white;
 }
 
+body {
+  background: var(--background-color);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Scene */
+section {
+  width: 300px;
+  height: 300px;
+  margin: 60px auto;
+  perspective: 1200px;
+}
+
+article {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  /* Schuin zodat front, right en top zichtbaar zijn */
+  transform: rotateX(-35deg) rotateY(45deg);
+}
+
+/* Faces */
+article > div {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 4px;
+  background: black;
+}
+
+article > div > div { border-radius: 4px; }
+
+article > div:nth-child(1) { transform: rotateY(0deg) translateZ(100px); }
+article > div:nth-child(2) { transform: rotateY(180deg) translateZ(100px); }
+article > div:nth-child(3) { transform: rotateY(90deg) translateZ(100px); }
+article > div:nth-child(4) { transform: rotateY(-90deg) translateZ(100px); }
+article > div:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
+article > div:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
+
+/* Colors */
+article > div:nth-child(1) div { background: var(--red-color); }
+article > div:nth-child(2) div { background: var(--orange-color);; }
+article > div:nth-child(3) div { background: var(--blue-color);; }
+article > div:nth-child(4) div { background: var(--green-color);; }
+article > div:nth-child(5) div { background: var(--yellow-color);; }
+article > div:nth-child(6) div { background: var(--white-color);; }
