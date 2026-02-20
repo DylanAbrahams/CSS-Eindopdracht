@@ -74,6 +74,14 @@ Vrijdag ben ik begonnen met het eindproject. Ik heb gekozen voor de Rubiks kubus
 
 <img src="img/readme-img/rubiks-kubus.png" alt="Afbeelding van mijn Rubiks kubus" height=400>
 
+Op vrijdag hebben we nog gesprek gehad. Hieruit een paar inzichten: 
+ipv 6 randen met 9 vlakjes
+
+Doe 27 (of 26...?) blokes OF 54 vakjes
+
+Begin met een 2x2x2
+
+"article" gewoon veranderen naar "kubus"
 
 ## Bronnenlijst
 
