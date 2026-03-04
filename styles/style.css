@@ -22,9 +22,6 @@ body {
 
 /* knop style */
 label {
-  position: absolute;
-  top: 20px;
-  left: 20px;
   padding: 10px 20px;
   background: #333;
   color: white;
@@ -191,22 +188,34 @@ block:nth-child(8)>face:nth-child(6) {
 
 
 
-/* keyframes voor voorste laag */
-@keyframes rotateFront {
-  0%   { transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg); }
-  100%  { transform: translateX(calc(-1 * var(--ty))) translateY(calc(var(--tx))) translateZ(var(--tz)) rotateZ(90deg); }
+/* Voorste laag posities */
+block:nth-child(1) { --tx: -2em; --ty: -2em; --tz: 2em; }
+block:nth-child(2) { --tx: 2em;  --ty: -2em; --tz: 2em; }
+block:nth-child(3) { --tx: -2em; --ty: 2em;  --tz: 2em; }
+block:nth-child(4) { --tx: 2em;  --ty: 2em; --tz: 2em; }
+
+/* keyframes */
+@keyframes rotate0to90 {
+  0% { transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg); }
+  100% { transform: translateX(calc(-1 * var(--ty))) translateY(calc(var(--tx))) translateZ(var(--tz)) rotateZ(90deg); }
 }
 
-/* target de checkbox via :has() op de label */
-label:has(input:checked) ~ scene block:nth-child(1),
-label:has(input:checked) ~ scene block:nth-child(2),
-label:has(input:checked) ~ scene block:nth-child(3),
-label:has(input:checked) ~ scene block:nth-child(4) {
-  --tx: -2em; --ty: -2em; --tz: 2em;
-  animation: rotateFront .5s forwards;
+@keyframes rotate90to180 {
+  0% { transform: translateX(calc(-1 * var(--ty))) translateY(calc(var(--tx))) translateZ(var(--tz)) rotateZ(90deg); }
+  100% { transform: translateX(calc(-1 * var(--tx))) translateY(calc(-1 * var(--ty))) translateZ(var(--tz)) rotateZ(180deg); }
 }
 
-/* individuele blokjes */
-label:has(input:checked) ~ scene block:nth-child(2) { --tx: 2em; --ty: -2em; --tz: 2em; }
-label:has(input:checked) ~ scene block:nth-child(3) { --tx: -2em; --ty: 2em; --tz: 2em; }
-label:has(input:checked) ~ scene block:nth-child(4) { --tx: 2em; --ty: 2em; --tz: 2em; }
+/* Animatie via :has() */
+label:nth-of-type(1):has(input:checked) ~ scene block:nth-child(1),
+label:nth-of-type(1):has(input:checked) ~ scene block:nth-child(2),
+label:nth-of-type(1):has(input:checked) ~ scene block:nth-child(3),
+label:nth-of-type(1):has(input:checked) ~ scene block:nth-child(4) {
+  animation: rotate0to90 0.5s forwards;
+}
+
+label:nth-of-type(2):has(input:checked) ~ scene block:nth-child(1),
+label:nth-of-type(2):has(input:checked) ~ scene block:nth-child(2),
+label:nth-of-type(2):has(input:checked) ~ scene block:nth-child(3),
+label:nth-of-type(2):has(input:checked) ~ scene block:nth-child(4) {
+  animation: rotate90to180 0.5s forwards;
+}
