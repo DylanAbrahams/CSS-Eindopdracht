@@ -1,6 +1,8 @@
 html {
-  --background-color: #111;
-
+  --background-color: #adadad;
+  --default-color: rgb(50, 50, 50);
+  --black-color: black;
+  
   --red-color: #d50000;
   --orange-color: #ff6d00;
   --blue-color: #2962ff;
@@ -18,7 +20,10 @@ body {
   background: var(--background-color);
 }
 
-scene, cube, block {
+scene,
+cube,
+block,
+face {
   display: block;
 }
 
@@ -29,30 +34,141 @@ scene {
 }
 
 cube {
-  width: 150px;
-  height: 150px;
   position: relative;
+  width: 100px;
+  height: 100px;
   transform-style: preserve-3d;
-  /* geen animatie nu */
+  transform: rotateX(-30deg) rotateY(45deg);
 }
 
 block {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  border: 2px solid #222;
+  width: 4em;
+  height: 4em;
   transform-style: preserve-3d;
-
-  transform:
-    translateX(calc(var(--x) * 50px))
-    translateY(calc(var(--y) * 50px))
-    translateZ(calc(var(--z) * 50px));
 }
 
-/* kleuren op buitenste blokjes */
-block[style*="--z:-1"] { background: var(--red-color); }
-block[style*="--z:1"]  { background: var(--orange-color); }
-block[style*="--x:1"]  { background: var(--green-color); }
-block[style*="--x:-1"] { background: var(--blue-color); }
-block[style*="--y:-1"] { background: var(--white-color); }
-block[style*="--y:1"]  { background: var(--yellow-color); }
+/* posities van blokjes */
+
+/* X=*/
+block:nth-child(1) {
+  transform: translateX(-2em) translateY(-2em) translateZ(2em);
+}
+
+block:nth-child(2) {
+  transform: translateX(2em) translateY(-2em) translateZ(2em);
+}
+
+block:nth-child(3) {
+  transform: translateX(-2em) translateY(2em) translateZ(2em);
+}
+
+block:nth-child(4) {
+  transform: translateX(2em) translateY(2em) translateZ(2em);
+}
+
+block:nth-child(5) {
+  transform: translateX(-2em) translateY(-2em) translateZ(-2em);
+}
+
+block:nth-child(6) {
+  transform: translateX(2em) translateY(-2em) translateZ(-2em);
+}
+
+block:nth-child(7) {
+  transform: translateX(-2em) translateY(2em) translateZ(-2em);
+}
+
+block:nth-child(8) {
+  transform: translateX(2em) translateY(2em) translateZ(-2em);
+}
+
+face {
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  border: 2px solid var(--black-color);
+  background: var(--default-color);
+  backface-visibility: hidden;
+}
+
+/* faces naar buiten via nth-child binnen block */
+block>face:nth-child(1) {
+  transform: rotateY(0deg) translateZ(2em);
+}
+
+/* front */
+block>face:nth-child(2) {
+  transform: rotateY(180deg) translateZ(2em);
+}
+
+/* back */
+block>face:nth-child(3) {
+  transform: rotateY(90deg) translateZ(2em);
+}
+
+/* right */
+block>face:nth-child(4) {
+  transform: rotateY(-90deg) translateZ(2em);
+}
+
+/* left */
+block>face:nth-child(5) {
+  transform: rotateX(90deg) translateZ(2em);
+}
+
+/* top */
+block>face:nth-child(6) {
+  transform: rotateX(-90deg) translateZ(2em);
+}
+
+/* bottom */
+
+/* kleuren via nth-child(block) + nth-child(face) */
+/* front (z+) */
+block:nth-child(1)>face:nth-child(1),
+block:nth-child(2)>face:nth-child(1),
+block:nth-child(3)>face:nth-child(1),
+block:nth-child(4)>face:nth-child(1) {
+  background: var(--orange-color);
+}
+
+/* back (z-) */
+block:nth-child(5)>face:nth-child(2),
+block:nth-child(6)>face:nth-child(2),
+block:nth-child(7)>face:nth-child(2),
+block:nth-child(8)>face:nth-child(2) {
+  background: var(--red-color);
+}
+
+/* right (x+) */
+block:nth-child(2)>face:nth-child(3),
+block:nth-child(4)>face:nth-child(3),
+block:nth-child(6)>face:nth-child(3),
+block:nth-child(8)>face:nth-child(3) {
+  background: var(--green-color);
+}
+
+/* left (x-) */
+block:nth-child(1)>face:nth-child(4),
+block:nth-child(3)>face:nth-child(4),
+block:nth-child(5)>face:nth-child(4),
+block:nth-child(7)>face:nth-child(4) {
+  background: var(--blue-color);
+}
+
+/* top (y-) */
+block:nth-child(1)>face:nth-child(5),
+block:nth-child(2)>face:nth-child(5),
+block:nth-child(5)>face:nth-child(5),
+block:nth-child(6)>face:nth-child(5) {
+  background: var(--white-color);
+}
+
+/* bottom (y+) */
+block:nth-child(3)>face:nth-child(6),
+block:nth-child(4)>face:nth-child(6),
+block:nth-child(7)>face:nth-child(6),
+block:nth-child(8)>face:nth-child(6) {
+  background: var(--yellow-color);
+}
