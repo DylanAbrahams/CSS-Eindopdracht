@@ -1,7 +1,7 @@
 # Dylan-CSS-To The Rescue
 Welkom bij mijn README over CSS To The Rescue
 
-## Dag 1 (18 jan)
+## Dag 1 (18 februari)
 ### Werkzaamheden
 Start Introductie opdracht CSS
 Groep met Naoufal & Alexia met als thema Makeup met Nils.
@@ -14,7 +14,7 @@ Kleurenmix: colormix()
 ### Checkout met Naoufal, Alexia & Nils.
 Uiteindelijk hebben we ons resultaat. Dit gaan we morgen presenteren. 
 
-## Dag 2 (19 jan)
+## Dag 2 (19 februari)
 ### Werkzaamheden
 Vandaag hebben we de eerste helft van de dag besteed aan het presenteren van ons intro project. Helaas was 1 van onze teamgenoten, Naoufal, niet op school dus waren Alexia en ik met z'n tweeen. We hebben allebei ons eigen werk gepresenteerd en daarna heb ik het werk van Naoufal nog laten zien aan de klas.
 
@@ -227,6 +227,17 @@ article > div:nth-child(6) div { background: var(--white-color);; }
 
 ```
 
+## Dag 3 (4 maart)
+
+
+
+label:has(input:checked)
+Tip van Sanne
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
+
+
+
 ## Bronnenlijst
 
 Ellipses
@@ -242,6 +253,8 @@ Codepen https://codepen.io/web-dot-dev/pen/YPzgNrL
 Color-mix
 Link: https://developer.chrome.com/docs/css-ui/css-color-mix?hl=nl
 
+:has()
+Link: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
 
 Codepen 2x2 Rubiks Cube die de muis volgt met CSS
 Link: https://codepen.io/anthoviso/pen/QByoLB?editors=1100
