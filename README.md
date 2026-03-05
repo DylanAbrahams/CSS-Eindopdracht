@@ -237,6 +237,9 @@ Tip van Sanne
 https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
 
 
+### Checkout met Julius
+Hij had eerst Rubiks cube, is nu overgestapt naar Control Panel
+
 
 ## Bronnenlijst
 
