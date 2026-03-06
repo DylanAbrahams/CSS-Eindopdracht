@@ -240,6 +240,17 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
 ### Checkout met Julius
 Hij had eerst Rubiks cube, is nu overgestapt naar Control Panel
 
+## Dag 4 (5 maart)
+
+
+## Week 2 Overzicht
+
+
+Variabel fonts installeren waarvan je de width/weight kan animeren
+De animaite KAN perfect, woensdag met Sanne praten
+Custom properties voor aantal grades 
+Die custom properties van transform kun je ook eerder definieren 
+
 
 ## Bronnenlijst
 

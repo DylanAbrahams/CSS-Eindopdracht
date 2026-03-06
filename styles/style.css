@@ -63,7 +63,6 @@ block {
 
 /* posities van blokjes */
 
-/* X=*/
 block:nth-child(1) {
   transform: translateX(-2em) translateY(-2em) translateZ(2em);
 }
@@ -135,9 +134,7 @@ block>face:nth-child(6) {
   transform: rotateX(-90deg) translateZ(2em);
 }
 
-/* bottom */
 
-/* kleuren via nth-child(block) + nth-child(face) */
 /* front (z+) */
 block:nth-child(1)>face:nth-child(1),
 block:nth-child(2)>face:nth-child(1),
