@@ -228,11 +228,16 @@ article > div:nth-child(6) div { background: var(--white-color);; }
 ```
 
 ## Dag 3 (4 maart)
+Vandaag ben ik verder gegaan met de Rubiks kubus opdracht. Ik moet mijn kubus anders inrichten dus ik ben weer opnieuw begonnen. Ten eerste heb ik nu custom HTML elementen gebruikt zoals <cube>, <block> en <face>. Dit is toegestaan. Verder heb ik nu mijn kubus ingericht per block ipv per zijkant. Daarnaast heb ik voor nu een 2x2x2 kubus gemaakt. De kubus is opgericht uit 8 blokken die elk zijn opgericht uit 6 zijdes. Met query selectors wordt per block/zijde bepaald welke kleur deze moet zijn. 
 
+Het duurde even voordat de kubus er goed zag maar uiteindelijk na wat gesleutel heb ik de kubus correct ingesteld. Verder staat deze in een scene met een perspectief van 50em. 
 
+Vervolgens heb ik een animatie gemaakt voor de kubus. Ik heb ervoor gezorgd dat de voorkant/rechterkant van de kubus ging draaien dmv keyframes. Hier ben ik wel lang mee bezig geweest want ik moest ze niet alleen om hun eigen as te laten draaien maar om het middenpunt van alle blokjes. Uiteindelijk heb ik met custom properties ervoor kunnen zorgen dat de posities van de blokjes geupdatet kunnen worden.
 
-label:has(input:checked)
-Tip van Sanne
+Uiteindelijk heb ik wat checkboxes ervoor gezorgd dat de kubus zou draaien wanneer je op een checkbox klikt. Ik was zelf even vergeten dat dit zonder IDs kon. Sanne heeft mij herinnert aan de :has() functie, waarmee het gelijk wel lukte. Verder was het ook gelukt om per checkbox een aparte waarde te geven. 
+
+Checkbox A roteert te kubus van 0 graden naar 90, checkbox B van 90 naar 180. Ik wil elke checkbox dynamisch in beeld laten wanneer deze relevant wordt. Verder moet ik er voor zorgen dat je meerdere rotaties kan doen (links/rechts) en terug kan draaien. Misschien zelfs ook de boven/onderkant. Daarnaast wil ik een ook een 3x3 proberen.
+
 
 https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
 
@@ -241,10 +246,44 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
 Hij had eerst Rubiks cube, is nu overgestapt naar Control Panel
 
 ## Dag 4 (5 maart)
+Vandaag moest ik naar de tandarts om een gaatje te vullen dus ben ik thuis gaan werken. Verder was dit niet mijn meest productieve dag. Ik heb vooral de tijd genomen om mijn code goed op orde te hebben en wat minimale veranderingen te maken. Zo heb ik nu bijvoorbeeld radio buttons ipv checkboxes. Dit had ik eigenlijk gelijk moeten doen want het heeft denk ik toch niet veel zin om meerdere checkboxes tegelijk aan te vinken, anders zou alles wel heel snel breken. 
+
+Verder heb ik al mijn code over keyframes eruit gehaald toen ik zag dat ik alleen maar 0% en 100% aan het gebruiken was. Toen ik nog geen knop had gebruikte ik 5 verschillende percentages zodat de kubus helemaal rond zou draaien maar nu heb ik alleen maar een transitie voor de positie/rotatie die wordt toegepast wanneer ik op de knop druk. 
+
+Nu heb ik een interface waarin ik 5 radio knoppen in beeld heb en elke knop de rotatie van de kubus aanpast naar gewenst aantal graden. Ik heb voor nu zowel een 0deg als een 360deg waar virtueel geen verschil in zit maar omdat de animatie anders terug zou draaien ipv verder heb ik een tussenstap erin gezet. Later ga ik kijken of ik automatisch hem naar 0deg kan zetten zodra hij 360 wordt zonder de transitie.
 
 
 ## Week 2 Overzicht
 
+Deze week ben ik opnieuw begonnen met mijn rubiks kubus. In de HTML heb ik de kubus opgedeeld in blokken in plaats van zijdes met vakjes, verder is elk blok opgedeeld in 6 zijdes. Ik ben begonnen met een 2x2x2 aangezien deze simpeler is om te programmeren met maar 8 blokjes vergeleken met de 27 (of 26) van de 3x3x3. 
+
+Ik ben begonnen met deze te bouwen in HTML. Ik gebruik nu custom HTML elementen zoals <cube> en <block> zodat ik het wat makkelijker voor mezelf maak in CSS. Het heeft even geduurt en er waren een paar bugs waaronder kleuren die aan de verkeerde kant stonden, binnen/buitenkant etc.
+
+<img src="img/readme-img/gebroken-2x2.png" alt="Animatie Rubiks kubus" height=250>
+<img src="img/readme-img/gebroken-2x2-apart.png" alt="Animatie Rubiks kubus" height=250>
+
+Uiteindelijk ben ik tot een goede 2x2x2 gekomen. Deze bestaat uit een scene met een perspectief van 50em met daarin een kubus met transform-style: preserve-3d en 45 graden gedraaid. Hierin zitten de 8 blokjes die allemaal een eigen transform hebben met verschillende waardes voor TranslateX, Y en Z. Vervolgens heeft elk blok 6 zijdes die allemaal een eigen rotatie en positie hebben, ook met transform.
+<img src="img/readme-img/2x2-kubus.png" alt="Animatie Rubiks kubus" height=400>
+
+
+Vervolgens ben ik begonnen met de animatie voor het roteren van de kubus. Ik heb code geschreven voor 4 van de 8 blokken om te rond te draaien dmv keyframes. Het duurde even om dit werkent te krijgen, de blokken gingen vaak of niet bewegen of alleen maar om hun eigen as net als de afbeelding hieronder.
+
+<img src="img/readme-img/2x2-animatie-fout.png" alt="Animatie Rubiks kubus" height=400>
+
+Op een gegeven moment had ik het werkend gekregen door de posities van de kubus op te slaan met custom properties en deze te updaten voor elk blok. Ik heb nu een vloeiende animatie voor het roteren van een zijde. Hij is nog niet perfect, maar daar ga ik volgende week naar kijken.
+
+<img src="img/readme-img/2x2-animatie.png" alt="Animatie Rubiks kubus" height=400>
+
+<img src="img/readme-img/2x2-animatie-2.png" alt="Animatie Rubiks kubus" height=400>
+
+<img src="img/readme-img/2x2-animatie-3.png" alt="Animatie Rubiks kubus" height=400>
+
+Verder heb ik geprogrammeerd wanneer je een checkbox inklikt de blokjes naar een specifieke waarde draaien. Dit is gedaan met de :has() functie. Ik gebruik nu transities hiervoor ipv keyframes aangezien het maar 1 animatie is. Verder kan hij ook terugdraaien de andere kant op. Ik heb helaas geen afbeelding van het testen met checkboxes want ik heb ze op een gegeven moment vervangen met radio buttons. Omdat ik van plan ben om maar 1 waarde per keer te gebruiken lijken radios veel handiger.
+
+
+<img src="img/readme-img/radio-buttons.png" alt="Rubiks kubus radio buttons" height=400>
+
+Op vrijdag heb ik het gesprek gehad met mijn clubje & Sanne. Hiervan wat aantekeningen:
 
 Variabel fonts installeren waarvan je de width/weight kan animeren
 De animaite KAN perfect, woensdag met Sanne praten
