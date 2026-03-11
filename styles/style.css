@@ -100,31 +100,6 @@ block:nth-child(4) {
   --tz: 2em;
 }
 
-/* posities van blokjes (alle 8 blokjes met variabelen) */
-block:nth-child(1) {
-  --tx: -2em;
-  --ty: -2em;
-  --tz: 2em;
-}
-
-block:nth-child(2) {
-  --tx: 2em;
-  --ty: -2em;
-  --tz: 2em;
-}
-
-block:nth-child(3) {
-  --tx: -2em;
-  --ty: 2em;
-  --tz: 2em;
-}
-
-block:nth-child(4) {
-  --tx: 2em;
-  --ty: 2em;
-  --tz: 2em;
-}
-
 block:nth-child(5) {
   --tx: -2em;
   --ty: -2em;

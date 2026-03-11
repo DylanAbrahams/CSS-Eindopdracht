@@ -291,7 +291,20 @@ Custom properties voor aantal grades
 Die custom properties van transform kun je ook eerder definieren 
 
 ## Dag 5 (11 maart)
-"Short Talk" over kleuren. RGB, HSL, OKLCH, color-mix etc.
+### Werkzaamheden
+Vandaag zijn we begonnen met een "Short" (1 uur) Talk over het gebruik van kleur in css. Sanne had uitleg gegeven over RGB, HSL, OKLCH, color-mix etc. Vervolgens heb ik ook een achtergrondje in mijn site gezet, want ik vond mijn grijze achtergrond een beetje saai worden. Ik heb hier een gradient in OKLCH voor gebruikt.
+
+Ik had in de ochtend nog geen zin om verder te gaan met de rubiks kubus in elkaar zetten en was begonnen aan de titel van de site. Deze moest sensationeel zijn en bij het concept passen. Ik heb als titel voor mijn website de naam CUBIFY, want ik wilde een naam van 6 letters, 1 voor elke kleur op de kubus. Elke letter zit op een aparte kubus met een eigen kleur die correspondeert met een zijde van de hoofdkubus. Verder heb ik deze allemaal een animatie gegeven waardoor ze nu een beetje op en neer bewegen en ronddraaien alsof ze door de ruimte zweven. Ik ben blij met het resultaat, ik ga wel nog een lettertype ervoor geven en misschien nog met de kleuren spelen. Ik had wel nog een schaduw toegevoegd aan alle kubussen. Nu matchen ze ook wat meer met de achtergrond.
+
+Verder ben ik vandaag bezig geweest met de kubus zelf. Ten eerste heb ik aan de radio buttons gezeten. Ik heb nu code om alleen de VORIGE en de VOLGENDE knop te laten zien. Alle andere knoppen hebben dan display:none. Voor elke radio button is er aparte css code voor de positie, rotatie en welke andere knoppen dan zichtbaar zijn. Verder heb ik ook een order gegeven aan bepaalde knoppen. Als je bv. op 360 graden zit, is 270 graden te VORIGE knop, waardoor hij links hoort te staan ipv rechts.
+
+Ten slotte ben ik begonnen met een nieuwe zijde te draaien. Dit is helaas nog niet gelukt. Als ik dezelfde code toepas maar dan voor bovenste zijde van de kubus ipv de voorste zijde (en alle posities/rotaties correct zijn) zorgt het ervoor dat die draai goed gaat, maar dat de draai van de voorkant alleen effect heeft op de 2 blokken voor- en onderin, want de andere 2 blokken worden overschreven. Ik heb een aantal dingen geprobeerd om dynamisch de waardes van de 2 draaien op te tellen. Het lukte wel voor de rotaties, maar niet voor de posities dus dit was ook niet wat het wezen moet. Ik ben nu bezig om voor alle combinaties een eigen specifike positie en rotatie te geven. Hier ga ik morgen mee verder.
+
+Ik had mijn code trouwens ook een beetje verschoond, Sanne zei vrijdag dat ik de posities van de blokken ergens anders in de code had kunnen doen en dat zag ik nu zelf ook. Ze werden al gedefinieerd maar later in het script had ik custom properties gemaakt waardoor het een beetje dubbelop was. Is nu gefixt.
+
+### Checkout met Eva
+Vandaag werd ik gerandomized met Eva. Zij is bezig met de silly walk. Zij heeft een klein beestje voor de silly walk opdracht. Ze heeft weinig ervaring met code dus voor haar is css al heel wat. Ik heb zelf laten zien wat ik nu heb en waar ik nog mee bezig wil zijn.
+Ik ben vandaag niet bezig geweest met de draai animatie dus daar wil ik morgen nog naar gaan kijken en verder zou ik heel graag morgen de bovenkant draai gefixt willen hebben.
 
 ## Bronnenlijst
 
