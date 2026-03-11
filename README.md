@@ -290,6 +290,8 @@ De animaite KAN perfect, woensdag met Sanne praten
 Custom properties voor aantal grades 
 Die custom properties van transform kun je ook eerder definieren 
 
+## Dag 5 (11 maart)
+"Short Talk" over kleuren. RGB, HSL, OKLCH, color-mix etc.
 
 ## Bronnenlijst
 
