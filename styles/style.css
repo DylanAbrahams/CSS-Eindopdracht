@@ -234,144 +234,194 @@ block:nth-child(8)>face:nth-child(6) {
 
 
 
-/* Blokken animeren */
-scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg);
-  
-}
 
-/* 90° */
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked)~scene block:nth-child(-n+4) {
-  transform: translateX(calc(-1 * var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg);
+/* --- F0° T0° --- */
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(4),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
-/* 180° */
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked)~scene block:nth-child(-n+4) {
-  transform: translateX(calc(-1 * var(--tx))) translateY(calc(-1 * var(--ty))) translateZ(var(--tz)) rotateZ(180deg);
+/* --- F0° T90° --- */
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(0deg) rotateY(90deg);
   transition: transform .5s;
 }
 
-/* 270° */
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked)~scene block:nth-child(-n+4) {
-  transform: translateX(var(--ty)) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(270deg);
+/* Blokken 3 en 4 blijven op default */
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
-/* 360° */
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked)~scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(360deg);
+/* --- F0° T180° --- */
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
+  transition: transform .5s;
+}
+
+/* Blokken 3 en 4 blijven op default */
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
+  transition: transform .5s;
+}
+
+/* --- F0° T270° --- */
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(0deg) rotateY(270deg);
+  transition: transform .5s;
+}
+
+/* Blokken 3 en 4 blijven op default */
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
+  transition: transform .5s;
+}
+
+/* --- F0° T360° --- */
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(360deg);
+  transition: transform .5s;
+}
+
+/* Blokken 3 en 4 blijven op default */
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
+  transition: transform .5s;
+}
+
+/* --- F90° T0° --- */
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(1),
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(2),
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
+  transition: transform .5s;
+}
+
+/* Blokken 5 en 6 blijven op default */
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(5),
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
+  transition: transform .5s;
+}
+
+/* --- F90° T90° --- */
+/* Blok 1 → originele positie van 4 (F90-T0) */
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(1) {
+  transform: translateX(calc(-1 * var(--ty))) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(90deg) rotateY(90deg);
+  transition: transform .5s;
+}
+
+/* Blok 5 → exact positie van blok 2 in F0° T90° */
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(5) {
+  transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(90deg) rotateY(90deg);
+  transition: transform .5s;
+}
+
+/* Blok 3 en 4 bewegen normaal */
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
+  transition: transform .5s;
+}
+
+/* Stilstaande blokken: 2 en 6 (exact F0-T90 positie) */
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(2),
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(0deg) rotateY(90deg);
+  transition: transform .5s;
+}
+
+/* --- F90° T180° --- */
+/* Stilstaande blokken: 2 en 6 (positie F0-T180) */
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(2){
+  transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
+  transition: transform .5s;
+}
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(90deg) rotateY(180deg);
+  transition: transform .5s;
+}
+/* Bewegende blokken: 1,3,4,5 */
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(1) {
+  transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
+  transition: transform .5s;
+}
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
+  transition: transform .5s;
+}
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(5) {
+  transform: translateX(calc(-1*var(--tx))) translateY(calc(-1*var(--tx))) translateZ(calc(-1*var(--tx))) rotateZ(90deg) rotateY(180deg);
+  transition: transform .5s;
+}
+
+
+/* --- F90° T270° --- */
+/* Stilstaande blokken: 2 en 6 (positie F0-T270) */
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(2){
+  transform: translateX(var(--tz)) translateY(calc(-1*var(--tx))) translateZ(var(--tx)) rotateZ(90deg) rotateY(270deg);
+  transition: transform .5s;
+}
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(90deg) rotateY(270deg);
+  transition: transform .5s;
+}
+/* Bewegende blokken: 1,3,4,5 */
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(1),
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(5) {
+    transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(0deg) rotateY(270deg);
+  transition: transform .5s;
+}
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
+  transition: transform .5s;
+}
+
+/* --- F90° T360° --- */
+/* Exact hetzelfde als F90° T0°, alleen Y-rotatie op 360° */
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(1),
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(2),
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(4) {
+  transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(360deg);
+  transition: transform .5s;
+}
+
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(5),
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(6) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(360deg);
   transition: transform .5s;
 }
 
 
 
 
-/* 0° actief: vorige=360°, volgende=90° */
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label {
-  display: none;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label:nth-of-type(5) {
-  display: inline-block;
-  order: 0;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label:nth-of-type(2) {
-  display: inline-block;
-  order: 1;
-}
-
-/* 90° actief: vorige=0°, volgende=180° */
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label {
-  display: none;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label:nth-of-type(1) {
-  display: inline-block;
-  order: 0;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label:nth-of-type(3) {
-  display: inline-block;
-  order: 1;
-}
-
-/* 180° actief: vorige=90°, volgende=270° */
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label {
-  display: none;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label:nth-of-type(2) {
-  display: inline-block;
-  order: 0;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label:nth-of-type(4) {
-  display: inline-block;
-  order: 1;
-}
-
-/* 270° actief: vorige=180°, volgende=360° */
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label {
-  display: none;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label:nth-of-type(3) {
-  display: inline-block;
-  order: 0;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label:nth-of-type(5) {
-  display: inline-block;
-  order: 1;
-}
-
-/* 360° actief: vorige=270°, volgende=0° */
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label {
-  display: none;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label:nth-of-type(4) {
-  display: inline-block;
-  order: 0;
-}
-
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label:nth-of-type(1) {
-  display: inline-block;
-  order: 1;
-}
 
 
-
-/* bovenkant - standaard */
-div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(1) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateX(0deg);
-}
-
-/* bovenkant 90° */
-div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(2) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(calc(-1 * var(--tz))) translateZ(var(--ty)) rotateX(90deg);
-  transition: transform .5s;
-}
-
-/* bovenkant 180° */
-div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(3) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(calc(-1 * var(--ty))) translateZ(calc(-1 * var(--tz))) rotateX(180deg);
-  transition: transform .5s;
-}
-
-/* bovenkant 270° */
-div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(4) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(var(--tz)) translateZ(calc(-1 * var(--ty))) rotateX(270deg);
-  transition: transform .5s;
-}
-
-/* bovenkant 360° = 0° */
-div:has(label[name="top-rotate"]:nth-of-type(5) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateX(360deg);
-  transition: transform .5s;
-}
 
 
 
