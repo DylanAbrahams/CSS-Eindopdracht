@@ -320,6 +320,15 @@ Momenteel heb ik van deze 25 radio buttons 13 knoppen werkens. Ik kan mijn kubus
 
 Ik ben niet bezig geweest met het fixen van de animatie, want daar lag persoonlijk mijn prioriteit niet. Daarnaast zou het waarschijnlijk een verschrikkelijke klus zijn om AL mijn radio buttons aan te passen, want deze hebben momenteel allemaal een transitie voor hun kubus. Tenzij dit heel snel kan laat ik dat links. 
 
+## Week 3 Overzicht
+Mijn doel van deze week was om de kubus meerdere keren te kunnen draaien. Dit is gelukt. Na veel gestoeid te hebben met 2 radio groups (1 voor voorkant, 1 voor bovenkant) heb ik uiteindelijk besloten om elke positie/rotatie een eigen radio button te geven. Ik heb nu 25 radio buttons. Eerst 5 om de rotatie van de voorkant te bepalen en vervolgens voor alle 5 kun je rotatie van de bovenkant bepalen. Hier ben ik een deel van woensdag, HEEL donderdag en vrijdag ochtend mee bezig geweest. Ik heb dus voor elke radio button de positie en rotatie van ELK individueel blok ingesteld. Dit is ~450 regels aan CSS. 
+
+
+
+Vrijdag gesprek met clubje
+
+
+
 ### Checkout met Julius
 Vandaag werd ik gerandomized met Julius. Hij is bezig geweest met zijn control panel nadat hij was gestopt met de rubiks kubus. Hij is bezig met een schakelaar te maken op de manier hoe Sanne die in zijn codepen had. Ik heb hem laten zien wat ik had. Hij vond dat ik al veel had en goed opweg was. Mijn doel is om in ieder geval alle radios die ik nu heb af te maken en aan alle eisen te doen waaronder nog een thema. Hij kwam nog met het idee om memes voor de blokjes te doen als thema, lijkt me wel geinig. 
 

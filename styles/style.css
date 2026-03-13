@@ -241,7 +241,9 @@ div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-chi
 div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(3),
 div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(4),
 div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6) {
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(7),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(8)  {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
@@ -664,7 +666,6 @@ div:nth-of-type(5):has(label:nth-of-type(4) input:checked) ~ scene block:nth-chi
 }
 
 
-
 /* --- F360° T360° --- */
 div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(1),
 div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(2),
@@ -680,6 +681,99 @@ div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-chi
 }
 
 
+
+
+/* 0° actief: vorige=360°, volgende=90° */
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label {
+  display: none;
+}
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label:nth-of-type(5) {
+  display: inline-block;
+  order: 0;
+}
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label:nth-of-type(2) {
+  display: inline-block;
+  order: 1;
+}
+
+/* 90° actief: vorige=0°, volgende=180° */
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label {
+  display: none;
+}
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label:nth-of-type(1) {
+  display: inline-block;
+  order: 0;
+}
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label:nth-of-type(3) {
+  display: inline-block;
+  order: 1;
+}
+
+/* 180° actief: vorige=90°, volgende=270° */
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label {
+  display: none;
+}
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label:nth-of-type(2) {
+  display: inline-block;
+  order: 0;
+}
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label:nth-of-type(4) {
+  display: inline-block;
+  order: 1;
+}
+
+/* 270° actief: vorige=180°, volgende=360° */
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label {
+  display: none;
+}
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label:nth-of-type(3) {
+  display: inline-block;
+  order: 0;
+}
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label:nth-of-type(5) {
+  display: inline-block;
+  order: 1;
+}
+
+/* 360° actief: vorige=270°, volgende=0° */
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label {
+  display: none;
+}
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label:nth-of-type(4) {
+  display: inline-block;
+  order: 0;
+}
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label:nth-of-type(1) {
+  display: inline-block;
+  order: 1;
+}
+
+
+
+/* bovenkant - standaard */
+div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(1) input:checked) ~ scene block:nth-child(-n+4) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateX(0deg);
+}
+/* bovenkant 90° */
+div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(2) input:checked) ~ scene block:nth-child(-n+4) {
+  transform: translateX(var(--tx)) translateY(calc(-1 * var(--tz))) translateZ(var(--ty)) rotateX(90deg);
+  transition: transform .5s;
+}
+/* bovenkant 180° */
+div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(3) input:checked) ~ scene block:nth-child(-n+4) {
+  transform: translateX(var(--tx)) translateY(calc(-1 * var(--ty))) translateZ(calc(-1 * var(--tz))) rotateX(180deg);
+  transition: transform .5s;
+}
+/* bovenkant 270° */
+div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(4) input:checked) ~ scene block:nth-child(-n+4) {
+  transform: translateX(var(--tx)) translateY(var(--tz)) translateZ(calc(-1 * var(--ty))) rotateX(270deg);
+  transition: transform .5s;
+}
+/* bovenkant 360° = 0° */
+div:has(label[name="top-rotate"]:nth-of-type(5) input:checked) ~ scene block:nth-child(-n+4) {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateX(360deg);
+  transition: transform .5s;
+}
 
 
 
