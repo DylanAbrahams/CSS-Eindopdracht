@@ -320,26 +320,34 @@ Momenteel heb ik van deze 25 radio buttons 13 knoppen werkens. Ik kan mijn kubus
 
 Ik ben niet bezig geweest met het fixen van de animatie, want daar lag persoonlijk mijn prioriteit niet. Daarnaast zou het waarschijnlijk een verschrikkelijke klus zijn om AL mijn radio buttons aan te passen, want deze hebben momenteel allemaal een transitie voor hun kubus. Tenzij dit heel snel kan laat ik dat links. 
 
-## Week 3 Overzicht
-Mijn doel van deze week was om de kubus meerdere keren te kunnen draaien. Dit is gelukt. Na veel gestoeid te hebben met 2 radio groups (1 voor voorkant, 1 voor bovenkant) heb ik uiteindelijk besloten om elke positie/rotatie een eigen radio button te geven. Ik heb nu 25 radio buttons. Eerst 5 om de rotatie van de voorkant te bepalen en vervolgens voor alle 5 kun je rotatie van de bovenkant bepalen. Hier ben ik een deel van woensdag, HEEL donderdag en vrijdag ochtend mee bezig geweest. Ik heb dus voor elke radio button de positie en rotatie van ELK individueel blok ingesteld. Dit is ~450 regels aan CSS. 
-
-
-
-Vrijdag gesprek met clubje
-
-
 
 ### Checkout met Julius
 Vandaag werd ik gerandomized met Julius. Hij is bezig geweest met zijn control panel nadat hij was gestopt met de rubiks kubus. Hij is bezig met een schakelaar te maken op de manier hoe Sanne die in zijn codepen had. Ik heb hem laten zien wat ik had. Hij vond dat ik al veel had en goed opweg was. Mijn doel is om in ieder geval alle radios die ik nu heb af te maken en aan alle eisen te doen waaronder nog een thema. Hij kwam nog met het idee om memes voor de blokjes te doen als thema, lijkt me wel geinig. 
 
-### Week 3 Overzicht
+## Week 3 Overzicht
+Mijn doel van deze week was om de kubus meerdere keren te kunnen draaien. Dit is gelukt. Na veel gestoeid te hebben met 2 radio groups (1 voor voorkant, 1 voor bovenkant) heb ik uiteindelijk besloten om elke positie/rotatie een eigen radio button te geven. Ik heb nu 25 radio buttons. Eerst 5 om de rotatie van de voorkant te bepalen en vervolgens voor alle 5 kun je rotatie van de bovenkant bepalen. Hier ben ik een deel van woensdag, HEEL donderdag en vrijdag ochtend mee bezig geweest. Ik heb dus voor elke radio button de positie en rotatie van ELK individueel blok ingesteld. Dit is ~450 regels aan CSS. 
 
+Ik had aan het begin van de week (woensdag) nog geen zin om verder te gaan met de hoofdkubus dus ben ik wat andere dingen gaan doen, waaronder het opschonen van mijn code en het toevoegen van de sensational title. Omdat ik de rubiks kubus als concept heb gekozen vond ik het leuk om de titel te bouwen met blokjes in de kleuren van de kubus. Ik heb daarom ook een titel van 6 letters gekozen: Cubify. Elk blok is 1 letter, elk in een van de 6 kleuren van de main kubus. Verder hebben ze een animatie waardoor ze constant een beetje rond bewegen/draaien alsof ze in de ruimte aan het zweven zijn. Er zit voor elk blok een kleine delay zodat ze niet allemaal hetzelfde doen op hetzelfde moment
 
+<img src="img/readme-img/cubify-blokjes.png" alt="Rubiks kubus" height=400>
 
+Voordat ik de 2e draai heb toegevoegd had ik nog 5 radio buttons. Ik heb code geschreven wat ervoor zorgt dat er maar 2/5 radio buttons zichtbaar zijn: degene die linksom draait en degene die rechtsom draait ten opzichte van de huidige positie. Zo zullen er altijd alleen de juiste knoppen zichtbaar waardoor altijd een goede draai zal spelen en niet bv. een dubbele draai in 1 klik.  Deze code ga ik wel opnieuw moeten verwerken omdat ik een 2e draai heb toegevoegd.
 
+<img src="img/readme-img/responsive-buttons.png" alt="Rubiks kubus" height=400>
 
+Ik heb eerst geprobeerd om de 2e draai toe te voegen door een 2e radio group toe te voegen. Ik heb nu een radio group voor de voorkant van de kubus en een voor de bovenkant van de kubus. Uiteindelijk heb ik ze allebei werkend gekregen maar niet bij elkaar. Ik heb code kunnen fixen waardoor er herkend kan worden wanneer radio groep A een bepaalde waarde heeft en radio groep B een waarde heeft maar uiteindelijk werkte het niet heel lekker. Zoals je kan zien in de plaatjes hieronder wanneer 1 van de radio buttons op 0 graden staat dan wordt de kubus soepel gedraaid maar wanneer er bv. 90 graden boven en 270 graden voor wordt gedraaid gaat de kubus stuk. Misschien was het mogelijk geweest maar ik vond het te moeilijk om met deze benadering het overzicht te bewaren. Daarnaast is het op deze manier niet duidelijk of er eerst aan de bovenkant gedraaid wordt of eerst aan de voorkant.
 
+<img src="img/readme-img/2-radio-groups.png" alt="Rubiks kubus" height=400>
+<img src="img/readme-img/gebroken-kubus.png" alt="Rubiks kubus" height=400>
 
+Na heel lang gesleutelt te hebben met 2 radio groups heb ik toch gekozen voor 25 indivuele radio buttons. Voor ELKE mogelijkheid heb ik voor 6 verschillende blokken (want blok 7 en 8 zitten altijd op dezelfde plek) hun positie en hun rotatie bepaald. Dit heeft heel lang geduurd. Het was ook niet de posities updaten naar een standaard locatie maar naar een locatie ten opzichte van hun originele locatie. Nu ik er over nadenk had ik misschien een default state kunnen geven waarin ze allemaal nog geen rotatie hadden ipv voor elk een eigen custom property... Dat bedenk ik nu terwijl ik dit aan het schrijven ben. Ach ja. Uiteindelijk hebben ze nu alle 25 de juiste positie en kan de rubiks kubus iig niet meer stuk gaan. 
+ 
+<img src="img/readme-img/25-radio-buttons.png" alt="Rubiks kubus" height=400>
+
+Ik had verder nog een achtergrond toegevoegd aan de website. Ik heb een gradient gemaakt met OKLCH zodat de kleuren mooi in elkaar lopen ten opzichte van RGB. HSL was ook wel mooi geweest maar heb toch voor OKLCH gekozen. Verder vond ik een paars/blauwe kleur wel leuk passen. Geeft een beetje het ruimte gevoel wat past bij de blokjes van de titel.
+
+Vrijdag gesprek met clubje 5 + Sanne
+Iedereen heeft laten zien wat hij/zij had. Ik ben wel tevreden met wat ik heb gemaakt al wordt het helaas geen 3x3x3 meer. Ik ga in ieder geval er nog voor zorgen dat alleen de relevante buttons zichtbaar zullen zijn. Hiervoor moet ik mijn code die ik al heb voor 5 buttons laten werken op 25 buttons en meerdere voor elk. Waarschijnlijk zal ik voor elke mogelijkheid een aparte lijst met buttons moeten geven. Verder wil iig nog een thema toevoegen waarbij ik if() wil gebruiken om aan mijn eisen te voldoen en ervoor zorgen dat alles op zowel desktop als mobiel goed in beeld blijft. Misschien nog wat kleuren mooi maken op de knoppen en de CUBIFY letters een passend lettertype geven met misschien een animatie er nog bij. 
 
 
 
