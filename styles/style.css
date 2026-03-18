@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Owners;
+  src: url(/styles/fonts/Thuner.otf);
+}
+
 html {
   --background-color: linear-gradient(0deg,
       oklch(43.726% 0.11301 280.038),
@@ -5,15 +10,27 @@ html {
   ;
   --default-color: rgb(50, 50, 50);
   --black-color: black;
+  --bright-color: rgba(255, 255, 255, 0.76);
 
-  --back-color: #e12626;
-  --front-color: #ff5e00;
-  --left-color: #5da8eb;
-  --right-color: #33d821;
-  --bottom-color: #fff200;
-  --top-color: rgb(255, 253, 232);
+--front-color: #e12626;
+--back-color: #ff5e00;
+--left-color: #5da8eb;
+--right-color: #33d821;
+--bottom-color: rgb(255, 253, 232);
+--top-color: #fff200;
+
+--dark-front-color: #710000;
+--dark-back-color: #823200;
+--dark-left-color: #000065;
+--dark-right-color: #006502;
+--dark-bottom-color: #777777;
+--dark-top-color: #b48a00;
+  --dark-background: linear-gradient(0deg,
+      oklch(15.334% 0.05875 258.765),
+      oklch(30.307% 0.05689 347.1));
 
   --face-filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+  --dark-face-filter: drop-shadow(0 2px 3px rgb(212, 0, 255)) drop-shadow(0 2px 3px rgb(46, 255, 220));
 }
 
 body {
@@ -24,8 +41,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--background-color);
   gap: 2em;
+
+  background: if(media(prefers-color-scheme: dark): var(--dark-background);
+      else: var(--background-color);
+    );
 }
 
 div {
@@ -57,6 +77,7 @@ scene {
   justify-content: center;
   align-items: center;
   perspective: 50em;
+  
 }
 
 cube {
@@ -125,7 +146,7 @@ block:nth-child(8) {
 }
 
 /* standaard transform voor alle blokken */
-scene block {
+scene:nth-of-type(2) block {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg);
 }
 
@@ -141,7 +162,8 @@ face {
   backface-visibility: hidden;
   box-shadow: inset 0 0 0 2px var(--black-color);
 
-  filter: var(--face-filter);
+  filter: if(media(prefers-color-scheme: dark): var(--dark-face-filter);
+      else: var(--face-filter));
 }
 
 /* faces naar buiten via nth-child binnen block */
@@ -180,7 +202,8 @@ block:nth-child(1)>face:nth-child(1),
 block:nth-child(2)>face:nth-child(1),
 block:nth-child(3)>face:nth-child(1),
 block:nth-child(4)>face:nth-child(1) {
-  background: var(--front-color);
+  background: if(media(prefers-color-scheme: dark): var(--dark-front-color);
+      else: var(--front-color));
 }
 
 /* back (z-) */
@@ -188,7 +211,8 @@ block:nth-child(5)>face:nth-child(2),
 block:nth-child(6)>face:nth-child(2),
 block:nth-child(7)>face:nth-child(2),
 block:nth-child(8)>face:nth-child(2) {
-  background: var(--back-color);
+  background: if(media(prefers-color-scheme: dark): var(--dark-back-color);
+      else: var(--back-color));
 }
 
 /* right (x+) */
@@ -196,7 +220,8 @@ block:nth-child(2)>face:nth-child(3),
 block:nth-child(4)>face:nth-child(3),
 block:nth-child(6)>face:nth-child(3),
 block:nth-child(8)>face:nth-child(3) {
-  background: var(--right-color);
+  background: if(media(prefers-color-scheme: dark): var(--dark-right-color);
+      else: var(--right-color));
 }
 
 /* left (x-) */
@@ -204,7 +229,8 @@ block:nth-child(1)>face:nth-child(4),
 block:nth-child(3)>face:nth-child(4),
 block:nth-child(5)>face:nth-child(4),
 block:nth-child(7)>face:nth-child(4) {
-  background: var(--left-color);
+  background: if(media(prefers-color-scheme: dark): var(--dark-left-color);
+      else: var(--left-color));
 }
 
 /* top (y-) */
@@ -212,7 +238,8 @@ block:nth-child(1)>face:nth-child(5),
 block:nth-child(2)>face:nth-child(5),
 block:nth-child(5)>face:nth-child(5),
 block:nth-child(6)>face:nth-child(5) {
-  background: var(--top-color);
+  background: if(media(prefers-color-scheme: dark): var(--dark-top-color);
+      else: var(--top-color));
 }
 
 /* bottom (y+) */
@@ -220,7 +247,8 @@ block:nth-child(3)>face:nth-child(6),
 block:nth-child(4)>face:nth-child(6),
 block:nth-child(7)>face:nth-child(6),
 block:nth-child(8)>face:nth-child(6) {
-  background: var(--bottom-color);
+  background: if(media(prefers-color-scheme: dark): var(--dark-bottom-color);
+      else: var(--bottom-color));
 }
 
 
@@ -236,132 +264,144 @@ block:nth-child(8)>face:nth-child(6) {
 
 
 /* --- F0° T0° --- */
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(4),
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6),
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(7),
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(8)  {
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(4),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(6),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(7),
+div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(8) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 /* --- F0° T90° --- */
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(6) {
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked)~scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked)~scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked)~scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(0deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked)~scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(2) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 
 /* --- F0° T180° --- */
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(6) {
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked)~scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked)~scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked)~scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked)~scene block:nth-child(6) {
   transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked)~scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(3) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 
 /* --- F0° T270° --- */
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(6) {
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked)~scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked)~scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked)~scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked)~scene block:nth-child(6) {
   transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(0deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked)~scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(4) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 
 /* --- F0° T360° --- */
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(6) {
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked)~scene block:nth-child(1),
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked)~scene block:nth-child(2),
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked)~scene block:nth-child(5),
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(360deg);
   transition: transform .5s;
 }
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked)~scene block:nth-child(3),
+div:nth-of-type(1):has(label:nth-of-type(5) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 /* --- F90° T0° --- */
-div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(4) {
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked)~scene block:nth-child(1),
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked)~scene block:nth-child(2),
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked)~scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(2):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked)~scene block:nth-child(5),
+div:nth-of-type(2):has(label:nth-of-type(1) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 
 /* --- F90° T90° --- */
-div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(1) {
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked)~scene block:nth-child(1) {
   transform: translateX(calc(-1 * var(--ty))) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(90deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(5) {
+
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked)~scene block:nth-child(5) {
   transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(90deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked)~scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(2):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked)~scene block:nth-child(2),
+div:nth-of-type(2):has(label:nth-of-type(2) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(0deg) rotateY(90deg);
   transition: transform .5s;
 }
 
 
 /* --- F90° T180° --- */
-div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(2){
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked)~scene block:nth-child(2) {
   transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(90deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(1) {
+
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked)~scene block:nth-child(1) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked)~scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(5) {
+
+div:nth-of-type(2):has(label:nth-of-type(3) input:checked)~scene block:nth-child(5) {
   transform: translateX(calc(-1*var(--tx))) translateY(calc(-1*var(--tx))) translateZ(calc(-1*var(--tx))) rotateZ(90deg) rotateY(180deg);
   transition: transform .5s;
 }
@@ -369,99 +409,112 @@ div:nth-of-type(2):has(label:nth-of-type(3) input:checked) ~ scene block:nth-chi
 
 /* --- F90° T270° --- */
 /* Stilstaande blokken: 2 en 6 (positie F0-T270) */
-div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(2){
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked)~scene block:nth-child(2) {
   transform: translateX(var(--tz)) translateY(calc(-1*var(--tx))) translateZ(var(--tx)) rotateZ(90deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked)~scene block:nth-child(6) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(90deg) rotateY(270deg);
   transition: transform .5s;
 }
+
 /* Bewegende blokken: 1,3,4,5 */
-div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(5) {
-    transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(0deg) rotateY(270deg);
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked)~scene block:nth-child(1),
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked)~scene block:nth-child(5) {
+  transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(0deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(2):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked)~scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(4) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 /* --- F90° T360° --- */
 /* Exact hetzelfde als F90° T0°, alleen Y-rotatie op 360° */
-div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(4) {
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked)~scene block:nth-child(1),
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked)~scene block:nth-child(2),
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked)~scene block:nth-child(3),
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(var(--tz)) rotateZ(90deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(2):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked)~scene block:nth-child(5),
+div:nth-of-type(2):has(label:nth-of-type(5) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
 }
 
 
 /* --- F180° T0° --- */
-div:nth-of-type(3):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(3):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(3):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(3):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(4) {
+div:nth-of-type(3):has(label:nth-of-type(1) input:checked)~scene block:nth-child(1),
+div:nth-of-type(3):has(label:nth-of-type(1) input:checked)~scene block:nth-child(2),
+div:nth-of-type(3):has(label:nth-of-type(1) input:checked)~scene block:nth-child(3),
+div:nth-of-type(3):has(label:nth-of-type(1) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1 * var(--tx))) translateY(calc(-1 * var(--ty))) translateZ(var(--tz)) rotateZ(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(3):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(3):has(label:nth-of-type(1) input:checked)~scene block:nth-child(5),
+div:nth-of-type(3):has(label:nth-of-type(1) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 
 /* --- F180° T90° --- */
-div:nth-of-type(3):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(1) {
+div:nth-of-type(3):has(label:nth-of-type(2) input:checked)~scene block:nth-child(1) {
   transform: translateX(var(--ty)) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(180deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(3) {
+
+div:nth-of-type(3):has(label:nth-of-type(2) input:checked)~scene block:nth-child(3) {
   transform: translateX(calc(-1 * var(--tx))) translateY(calc(-1 * var(--ty))) translateZ(var(--tz)) rotateZ(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(3):has(label:nth-of-type(2) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1*var(--ty))) translateY(calc(-1*var(--tx))) translateZ(var(--tz)) rotateZ(180deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(5) {
+
+div:nth-of-type(3):has(label:nth-of-type(2) input:checked)~scene block:nth-child(5) {
   transform: translateX(calc(-1*var(--tx))) translateY(calc(-1*var(--tx))) translateZ(calc(-1*var(--tx))) rotateZ(180deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(3):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(3):has(label:nth-of-type(2) input:checked)~scene block:nth-child(2),
+div:nth-of-type(3):has(label:nth-of-type(2) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(0deg) rotateY(90deg);
   transition: transform .5s;
 }
 
 
 /* --- F180° T180° --- */
-div:nth-of-type(3):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(2){
+div:nth-of-type(3):has(label:nth-of-type(3) input:checked)~scene block:nth-child(2) {
   transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(1) {
+
+div:nth-of-type(3):has(label:nth-of-type(3) input:checked)~scene block:nth-child(1) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(3):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(3):has(label:nth-of-type(3) input:checked)~scene block:nth-child(3),
+div:nth-of-type(3):has(label:nth-of-type(3) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1 * var(--tx))) translateY(calc(-1 * var(--ty))) translateZ(var(--tz)) rotateZ(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(5) {
+
+div:nth-of-type(3):has(label:nth-of-type(3) input:checked)~scene block:nth-child(5) {
   transform: translateX(var(--tz)) translateY(calc(-1 * var(--ty))) translateZ(calc(-1*var(--tx)))rotateZ(180deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(3):has(label:nth-of-type(3) input:checked)~scene block:nth-child(6) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(180deg) rotateY(180deg);
   transition: transform .5s;
 }
@@ -469,22 +522,25 @@ div:nth-of-type(3):has(label:nth-of-type(3) input:checked) ~ scene block:nth-chi
 
 /* --- F180° T270° --- */
 /* Stilstaande blokken: 2 en 6 (positie F0-T270) */
-div:nth-of-type(3):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(2){
+div:nth-of-type(3):has(label:nth-of-type(4) input:checked)~scene block:nth-child(2) {
   transform: translateX(var(--tz)) translateY(var(--tx)) translateZ(var(--tx)) rotateZ(180deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(3):has(label:nth-of-type(4) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--ty)) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(180deg) rotateY(270deg);
   transition: transform .5s;
 }
+
 /* Bewegende blokken: 1,3,4,5 */
-div:nth-of-type(3):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(3):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(5) {
+div:nth-of-type(3):has(label:nth-of-type(4) input:checked)~scene block:nth-child(1),
+div:nth-of-type(3):has(label:nth-of-type(4) input:checked)~scene block:nth-child(5) {
   transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(0deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(3):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(3):has(label:nth-of-type(4) input:checked)~scene block:nth-child(3),
+div:nth-of-type(3):has(label:nth-of-type(4) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1 * var(--tx))) translateY(calc(-1 * var(--ty))) translateZ(var(--tz)) rotateZ(180deg);
   transition: transform .5s;
 }
@@ -492,190 +548,211 @@ div:nth-of-type(3):has(label:nth-of-type(4) input:checked) ~ scene block:nth-chi
 
 /* --- F180° T360° --- */
 /* Exact hetzelfde als F180° T0° */
-div:nth-of-type(3):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(3):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(3):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(3):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(4) {
+div:nth-of-type(3):has(label:nth-of-type(5) input:checked)~scene block:nth-child(1),
+div:nth-of-type(3):has(label:nth-of-type(5) input:checked)~scene block:nth-child(2),
+div:nth-of-type(3):has(label:nth-of-type(5) input:checked)~scene block:nth-child(3),
+div:nth-of-type(3):has(label:nth-of-type(5) input:checked)~scene block:nth-child(4) {
   transform: translateX(calc(-1*var(--tx))) translateY(calc(-1*var(--ty))) translateZ(var(--tz)) rotateZ(180deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(3):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(3):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(3):has(label:nth-of-type(5) input:checked)~scene block:nth-child(5),
+div:nth-of-type(3):has(label:nth-of-type(5) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 
 /* --- F270° T0° --- */
-div:nth-of-type(4):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(4):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(4):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(4):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(4) {
+div:nth-of-type(4):has(label:nth-of-type(1) input:checked)~scene block:nth-child(1),
+div:nth-of-type(4):has(label:nth-of-type(1) input:checked)~scene block:nth-child(2),
+div:nth-of-type(4):has(label:nth-of-type(1) input:checked)~scene block:nth-child(3),
+div:nth-of-type(4):has(label:nth-of-type(1) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--ty)) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(4):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(4):has(label:nth-of-type(1) input:checked)~scene block:nth-child(5),
+div:nth-of-type(4):has(label:nth-of-type(1) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 /* --- F270° T90° --- */
-div:nth-of-type(4):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(1) {
+div:nth-of-type(4):has(label:nth-of-type(2) input:checked)~scene block:nth-child(1) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(270deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(5) {
+
+div:nth-of-type(4):has(label:nth-of-type(2) input:checked)~scene block:nth-child(5) {
   transform: translateX(var(--tx)) translateY(calc(-1 * var(--ty))) translateZ(calc(-1*var(--tx))) rotateZ(270deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(4):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(4):has(label:nth-of-type(2) input:checked)~scene block:nth-child(3),
+div:nth-of-type(4):has(label:nth-of-type(2) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--ty)) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(4):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(4):has(label:nth-of-type(2) input:checked)~scene block:nth-child(2),
+div:nth-of-type(4):has(label:nth-of-type(2) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(0deg) rotateY(90deg);
   transition: transform .5s;
 }
 
 
 /* --- F270° T180° --- */
-div:nth-of-type(4):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(1) {
+div:nth-of-type(4):has(label:nth-of-type(3) input:checked)~scene block:nth-child(1) {
   transform: translateX(calc(-1*var(--ty))) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(2){
+
+div:nth-of-type(4):has(label:nth-of-type(3) input:checked)~scene block:nth-child(2) {
   transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(4):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(4):has(label:nth-of-type(3) input:checked)~scene block:nth-child(3),
+div:nth-of-type(4):has(label:nth-of-type(3) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--ty)) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(5) {
+
+div:nth-of-type(4):has(label:nth-of-type(3) input:checked)~scene block:nth-child(5) {
   transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(270deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(4):has(label:nth-of-type(3) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--ty)) translateY(var(--tx)) translateZ(calc(-1*var(--tz))) rotateZ(270deg) rotateY(180deg);
   transition: transform .5s;
 }
 
 /* --- F270° T270° --- */
-div:nth-of-type(4):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(2){
+div:nth-of-type(4):has(label:nth-of-type(4) input:checked)~scene block:nth-child(2) {
   transform: translateX(calc(-1*var(--tz))) translateY(var(--tx)) translateZ(var(--tx)) rotateZ(270deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(4):has(label:nth-of-type(4) input:checked)~scene block:nth-child(6) {
   transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(270deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(4):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(5) {
+
+div:nth-of-type(4):has(label:nth-of-type(4) input:checked)~scene block:nth-child(1),
+div:nth-of-type(4):has(label:nth-of-type(4) input:checked)~scene block:nth-child(5) {
   transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(0deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(4):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(4):has(label:nth-of-type(4) input:checked)~scene block:nth-child(3),
+div:nth-of-type(4):has(label:nth-of-type(4) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--ty)) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(270deg);
   transition: transform .5s;
 }
 
 
 /* --- F270° T360° --- */
-div:nth-of-type(4):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(4):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(4):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(4):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(4) {
+div:nth-of-type(4):has(label:nth-of-type(5) input:checked)~scene block:nth-child(1),
+div:nth-of-type(4):has(label:nth-of-type(5) input:checked)~scene block:nth-child(2),
+div:nth-of-type(4):has(label:nth-of-type(5) input:checked)~scene block:nth-child(3),
+div:nth-of-type(4):has(label:nth-of-type(5) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--ty)) translateY(calc(-1 * var(--tx))) translateZ(var(--tz)) rotateZ(270deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(4):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(4):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(4):has(label:nth-of-type(5) input:checked)~scene block:nth-child(5),
+div:nth-of-type(4):has(label:nth-of-type(5) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 
 /* --- F360° T0° --- */
-div:nth-of-type(5):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(5):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(5):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(5):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(4) {
+div:nth-of-type(5):has(label:nth-of-type(1) input:checked)~scene block:nth-child(1),
+div:nth-of-type(5):has(label:nth-of-type(1) input:checked)~scene block:nth-child(2),
+div:nth-of-type(5):has(label:nth-of-type(1) input:checked)~scene block:nth-child(3),
+div:nth-of-type(5):has(label:nth-of-type(1) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(360deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(5):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(5):has(label:nth-of-type(1) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(5):has(label:nth-of-type(1) input:checked)~scene block:nth-child(5),
+div:nth-of-type(5):has(label:nth-of-type(1) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 /* --- F360° T90° --- */
-div:nth-of-type(5):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(5):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(5) {
+div:nth-of-type(5):has(label:nth-of-type(2) input:checked)~scene block:nth-child(1),
+div:nth-of-type(5):has(label:nth-of-type(2) input:checked)~scene block:nth-child(5) {
   transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(360deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(5):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(5):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(5):has(label:nth-of-type(2) input:checked)~scene block:nth-child(2),
+div:nth-of-type(5):has(label:nth-of-type(2) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tz)) translateY(var(--ty)) translateZ(calc(-1*var(--tx))) rotateZ(0deg) rotateY(90deg);
   transition: transform .5s;
 }
-div:nth-of-type(5):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(5):has(label:nth-of-type(2) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(5):has(label:nth-of-type(2) input:checked)~scene block:nth-child(3),
+div:nth-of-type(5):has(label:nth-of-type(2) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(360deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 /* --- F360° T180° --- */
-div:nth-of-type(5):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(5):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(2) {
+div:nth-of-type(5):has(label:nth-of-type(3) input:checked)~scene block:nth-child(1),
+div:nth-of-type(5):has(label:nth-of-type(3) input:checked)~scene block:nth-child(2) {
   transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(0deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(5):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(5):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(5):has(label:nth-of-type(3) input:checked)~scene block:nth-child(5),
+div:nth-of-type(5):has(label:nth-of-type(3) input:checked)~scene block:nth-child(6) {
   transform: translateX(calc(-1*var(--tx))) translateY(var(--ty)) translateZ(calc(-1*var(--tz))) rotateZ(360deg) rotateY(180deg);
   transition: transform .5s;
 }
-div:nth-of-type(5):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(5):has(label:nth-of-type(3) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(5):has(label:nth-of-type(3) input:checked)~scene block:nth-child(3),
+div:nth-of-type(5):has(label:nth-of-type(3) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(360deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 /* --- F360° T270° --- */
-div:nth-of-type(5):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(5):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(5) {
+div:nth-of-type(5):has(label:nth-of-type(4) input:checked)~scene block:nth-child(1),
+div:nth-of-type(5):has(label:nth-of-type(4) input:checked)~scene block:nth-child(5) {
   transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(0deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(5):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(5):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(5):has(label:nth-of-type(4) input:checked)~scene block:nth-child(2),
+div:nth-of-type(5):has(label:nth-of-type(4) input:checked)~scene block:nth-child(6) {
   transform: translateX(calc(-1*var(--tz))) translateY(var(--ty)) translateZ(var(--tx)) rotateZ(360deg) rotateY(270deg);
   transition: transform .5s;
 }
-div:nth-of-type(5):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(5):has(label:nth-of-type(4) input:checked) ~ scene block:nth-child(4) {
+
+div:nth-of-type(5):has(label:nth-of-type(4) input:checked)~scene block:nth-child(3),
+div:nth-of-type(5):has(label:nth-of-type(4) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(360deg) rotateY(0deg);
   transition: transform .5s;
 }
 
 
 /* --- F360° T360° --- */
-div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(1),
-div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(2),
-div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(3),
-div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(4) {
+div:nth-of-type(5):has(label:nth-of-type(5) input:checked)~scene block:nth-child(1),
+div:nth-of-type(5):has(label:nth-of-type(5) input:checked)~scene block:nth-child(2),
+div:nth-of-type(5):has(label:nth-of-type(5) input:checked)~scene block:nth-child(3),
+div:nth-of-type(5):has(label:nth-of-type(5) input:checked)~scene block:nth-child(4) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(360deg) rotateY(0deg);
   transition: transform .5s;
 }
-div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(5),
-div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-child(6) {
+
+div:nth-of-type(5):has(label:nth-of-type(5) input:checked)~scene block:nth-child(5),
+div:nth-of-type(5):has(label:nth-of-type(5) input:checked)~scene block:nth-child(6) {
   transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg) rotateY(0deg);
   transition: transform .5s;
 }
@@ -683,97 +760,195 @@ div:nth-of-type(5):has(label:nth-of-type(5) input:checked) ~ scene block:nth-chi
 
 
 
-/* 0° actief: vorige=360°, volgende=90° */
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label {
+
+
+
+
+
+
+div label {
   display: none;
-}
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label:nth-of-type(5) {
-  display: inline-block;
-  order: 0;
-}
-div:nth-of-type(1):has(label:nth-of-type(1) input:checked) label:nth-of-type(2) {
-  display: inline-block;
-  order: 1;
 }
 
-/* 90° actief: vorige=0°, volgende=180° */
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label {
-  display: none;
-}
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label:nth-of-type(1) {
+/* F0 */
+body:has(div:nth-of-type(1) label:nth-of-type(2) input:checked) div:nth-of-type(1) label:nth-of-type(1),
+body:has(div:nth-of-type(1) label:nth-of-type(3) input:checked) div:nth-of-type(1) label:nth-of-type(2),
+body:has(div:nth-of-type(1) label:nth-of-type(4) input:checked) div:nth-of-type(1) label:nth-of-type(3),
+body:has(div:nth-of-type(1) label:nth-of-type(5) input:checked) div:nth-of-type(1) label:nth-of-type(4) {
   display: inline-block;
   order: 0;
-}
-div:nth-of-type(1):has(label:nth-of-type(2) input:checked) label:nth-of-type(3) {
-  display: inline-block;
-  order: 1;
+
+  &::after {
+    content: " - Linksom";
+  }
 }
 
-/* 180° actief: vorige=90°, volgende=270° */
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label {
-  display: none;
-}
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label:nth-of-type(2) {
-  display: inline-block;
-  order: 0;
-}
-div:nth-of-type(1):has(label:nth-of-type(3) input:checked) label:nth-of-type(4) {
+body:has(div:nth-of-type(1) label:nth-of-type(1) input:checked) div:nth-of-type(1) label:nth-of-type(2),
+body:has(div:nth-of-type(1) label:nth-of-type(2) input:checked) div:nth-of-type(1) label:nth-of-type(3),
+body:has(div:nth-of-type(1) label:nth-of-type(3) input:checked) div:nth-of-type(1) label:nth-of-type(4),
+body:has(div:nth-of-type(1) label:nth-of-type(4) input:checked) div:nth-of-type(1) label:nth-of-type(5) {
   display: inline-block;
   order: 1;
+
+  &::after {
+    content: " - Rechtsom";
+  }
 }
 
-/* 270° actief: vorige=180°, volgende=360° */
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label {
-  display: none;
-}
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label:nth-of-type(3) {
+body:has(div:nth-of-type(1) label:nth-of-type(1) input:checked) div:nth-of-type(2) label:nth-of-type(1),
+body:has(div:nth-of-type(1) label:nth-of-type(2) input:checked) div:nth-of-type(2) label:nth-of-type(2),
+body:has(div:nth-of-type(1) label:nth-of-type(3) input:checked) div:nth-of-type(2) label:nth-of-type(3),
+body:has(div:nth-of-type(1) label:nth-of-type(4) input:checked) div:nth-of-type(2) label:nth-of-type(4),
+body:has(div:nth-of-type(1) label:nth-of-type(5) input:checked) div:nth-of-type(2) label:nth-of-type(5) {
   display: inline-block;
-  order: 0;
-}
-div:nth-of-type(1):has(label:nth-of-type(4) input:checked) label:nth-of-type(5) {
-  display: inline-block;
-  order: 1;
+
+  &::after {
+    content: " - Omlaag";
+  }
 }
 
-/* 360° actief: vorige=270°, volgende=0° */
-div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label {
-  display: none;
+body:has(div:nth-of-type(1) label:nth-of-type(1) input:checked) div:nth-of-type(5) label:nth-of-type(1),
+body:has(div:nth-of-type(1) label:nth-of-type(2) input:checked) div:nth-of-type(5) label:nth-of-type(2),
+body:has(div:nth-of-type(1) label:nth-of-type(3) input:checked) div:nth-of-type(5) label:nth-of-type(3),
+body:has(div:nth-of-type(1) label:nth-of-type(4) input:checked) div:nth-of-type(5) label:nth-of-type(4),
+body:has(div:nth-of-type(1) label:nth-of-type(5) input:checked) div:nth-of-type(5) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Omdraaien";
+  }
 }
+
+
+/* F90 */
+body:has(div:nth-of-type(2) label:nth-of-type(1) input:checked) div:nth-of-type(1) label:nth-of-type(1),
+body:has(div:nth-of-type(2) label:nth-of-type(2) input:checked) div:nth-of-type(1) label:nth-of-type(2),
+body:has(div:nth-of-type(2) label:nth-of-type(3) input:checked) div:nth-of-type(1) label:nth-of-type(3),
+body:has(div:nth-of-type(2) label:nth-of-type(4) input:checked) div:nth-of-type(1) label:nth-of-type(4),
+body:has(div:nth-of-type(2) label:nth-of-type(5) input:checked) div:nth-of-type(1) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Omhoog";
+  }
+}
+
+body:has(div:nth-of-type(2) label:nth-of-type(1) input:checked) div:nth-of-type(3) label:nth-of-type(1),
+body:has(div:nth-of-type(2) label:nth-of-type(2) input:checked) div:nth-of-type(3) label:nth-of-type(2),
+body:has(div:nth-of-type(2) label:nth-of-type(3) input:checked) div:nth-of-type(3) label:nth-of-type(3),
+body:has(div:nth-of-type(2) label:nth-of-type(4) input:checked) div:nth-of-type(3) label:nth-of-type(4),
+body:has(div:nth-of-type(2) label:nth-of-type(5) input:checked) div:nth-of-type(3) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Omlaag";
+  }
+}
+
+
+/* F180 */
+body:has(div:nth-of-type(3) label:nth-of-type(1) input:checked) div:nth-of-type(2) label:nth-of-type(1),
+body:has(div:nth-of-type(3) label:nth-of-type(2) input:checked) div:nth-of-type(2) label:nth-of-type(2),
+body:has(div:nth-of-type(3) label:nth-of-type(3) input:checked) div:nth-of-type(2) label:nth-of-type(3),
+body:has(div:nth-of-type(3) label:nth-of-type(4) input:checked) div:nth-of-type(2) label:nth-of-type(4),
+body:has(div:nth-of-type(3) label:nth-of-type(5) input:checked) div:nth-of-type(2) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Omhoog";
+  }
+}
+
+body:has(div:nth-of-type(3) label:nth-of-type(1) input:checked) div:nth-of-type(4) label:nth-of-type(1),
+body:has(div:nth-of-type(3) label:nth-of-type(2) input:checked) div:nth-of-type(4) label:nth-of-type(2),
+body:has(div:nth-of-type(3) label:nth-of-type(3) input:checked) div:nth-of-type(4) label:nth-of-type(3),
+body:has(div:nth-of-type(3) label:nth-of-type(4) input:checked) div:nth-of-type(4) label:nth-of-type(4),
+body:has(div:nth-of-type(3) label:nth-of-type(5) input:checked) div:nth-of-type(4) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Omlaag";
+  }
+}
+
+
+
+/* F270 */
+body:has(div:nth-of-type(4) label:nth-of-type(1) input:checked) div:nth-of-type(3) label:nth-of-type(1),
+body:has(div:nth-of-type(4) label:nth-of-type(2) input:checked) div:nth-of-type(3) label:nth-of-type(2),
+body:has(div:nth-of-type(4) label:nth-of-type(3) input:checked) div:nth-of-type(3) label:nth-of-type(3),
+body:has(div:nth-of-type(4) label:nth-of-type(4) input:checked) div:nth-of-type(3) label:nth-of-type(4),
+body:has(div:nth-of-type(4) label:nth-of-type(5) input:checked) div:nth-of-type(3) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Omhoog";
+  }
+}
+
+body:has(div:nth-of-type(4) label:nth-of-type(1) input:checked) div:nth-of-type(5) label:nth-of-type(1),
+body:has(div:nth-of-type(4) label:nth-of-type(2) input:checked) div:nth-of-type(5) label:nth-of-type(2),
+body:has(div:nth-of-type(4) label:nth-of-type(3) input:checked) div:nth-of-type(5) label:nth-of-type(3),
+body:has(div:nth-of-type(4) label:nth-of-type(4) input:checked) div:nth-of-type(5) label:nth-of-type(4),
+body:has(div:nth-of-type(4) label:nth-of-type(5) input:checked) div:nth-of-type(5) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Omlaag";
+  }
+}
+
+
+
+/* F360 */
+body:has(div:nth-of-type(5) label:nth-of-type(1) input:checked) div:nth-of-type(4) label:nth-of-type(1),
+body:has(div:nth-of-type(5) label:nth-of-type(2) input:checked) div:nth-of-type(4) label:nth-of-type(2),
+body:has(div:nth-of-type(5) label:nth-of-type(3) input:checked) div:nth-of-type(4) label:nth-of-type(3),
+body:has(div:nth-of-type(5) label:nth-of-type(4) input:checked) div:nth-of-type(4) label:nth-of-type(4),
+body:has(div:nth-of-type(5) label:nth-of-type(5) input:checked) div:nth-of-type(4) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Omhoog";
+  }
+}
+
+body:has(div:nth-of-type(1) label:nth-of-type(1) input:checked) div:nth-of-type(1) label:nth-of-type(5),
+body:has(div:nth-of-type(1) label:nth-of-type(5) input:checked) div:nth-of-type(1) label:nth-of-type(1),
+
+body:has(div:nth-of-type(5) label:nth-of-type(1) input:checked) div:nth-of-type(1) label:nth-of-type(1),
+body:has(div:nth-of-type(5) label:nth-of-type(2) input:checked) div:nth-of-type(1) label:nth-of-type(2),
+body:has(div:nth-of-type(5) label:nth-of-type(3) input:checked) div:nth-of-type(1) label:nth-of-type(3),
+body:has(div:nth-of-type(5) label:nth-of-type(4) input:checked) div:nth-of-type(1) label:nth-of-type(4),
+body:has(div:nth-of-type(5) label:nth-of-type(5) input:checked) div:nth-of-type(1) label:nth-of-type(5) {
+  display: inline-block;
+
+  &::after {
+    content: " - Resetten";
+  }
+}
+
+/* 270 links zetten en 0 rechts zetten */
 div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label:nth-of-type(4) {
-  display: inline-block;
   order: 0;
 }
+
 div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label:nth-of-type(1) {
-  display: inline-block;
   order: 1;
 }
 
 
 
-/* bovenkant - standaard */
-div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(1) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateX(0deg);
-}
-/* bovenkant 90° */
-div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(2) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(calc(-1 * var(--tz))) translateZ(var(--ty)) rotateX(90deg);
-  transition: transform .5s;
-}
-/* bovenkant 180° */
-div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(3) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(calc(-1 * var(--ty))) translateZ(calc(-1 * var(--tz))) rotateX(180deg);
-  transition: transform .5s;
-}
-/* bovenkant 270° */
-div:nth-of-type(1):has(label[name="top-rotate"]:nth-of-type(4) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(var(--tz)) translateZ(calc(-1 * var(--ty))) rotateX(270deg);
-  transition: transform .5s;
-}
-/* bovenkant 360° = 0° */
-div:has(label[name="top-rotate"]:nth-of-type(5) input:checked) ~ scene block:nth-child(-n+4) {
-  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateX(360deg);
-  transition: transform .5s;
-}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -801,7 +976,8 @@ scene:first-of-type {
     animation-delay: -0s;
 
     block>face {
-      background: var(--front-color);
+      background: if(media(prefers-color-scheme: dark): var(--dark-front-color);
+          else: var(--front-color));
     }
   }
 
@@ -809,7 +985,8 @@ scene:first-of-type {
     animation-delay: -0.5s;
 
     block>face {
-      background: var(--back-color);
+      background: if(media(prefers-color-scheme: dark): var(--dark-back-color);
+          else: var(--back-color));
     }
   }
 
@@ -817,7 +994,8 @@ scene:first-of-type {
     animation-delay: -1s;
 
     block>face {
-      background: var(--left-color);
+      background: if(media(prefers-color-scheme: dark): var(--dark-left-color);
+          else: var(--left-color));
     }
   }
 
@@ -825,7 +1003,8 @@ scene:first-of-type {
     animation-delay: -1.5s;
 
     block>face {
-      background: var(--right-color);
+      background: if(media(prefers-color-scheme: dark): var(--dark-right-color);
+          else: var(--right-color));
     }
   }
 
@@ -833,7 +1012,8 @@ scene:first-of-type {
     animation-delay: -2s;
 
     block>face {
-      background: var(--top-color);
+      background: if(media(prefers-color-scheme: dark): var(--dark-top-color);
+          else: var(--top-color));
     }
   }
 
@@ -841,7 +1021,8 @@ scene:first-of-type {
     animation-delay: -2.5s;
 
     block>face {
-      background: var(--bottom-color);
+      background: if(media(prefers-color-scheme: dark): var(--dark-bottom-color);
+          else: var(--bottom-color));
     }
   }
 
@@ -849,11 +1030,18 @@ scene:first-of-type {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1em;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: if(
+      media(prefers-color-scheme: dark): var(--bright-color);
+      else: var(--black-color);
+      );
     backface-visibility: hidden;
 
+    p {
+      font-family: Owners, sans-serif;
+      font-size: 2.4em;
+      margin:auto;
+    }
   }
 }
 
@@ -878,4 +1066,55 @@ scene:first-of-type {
   100% {
     transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px);
   }
+}
+
+
+
+
+
+
+
+
+/* Faces standaard leeg */
+scene:last-of-type face::before {
+  text-align: center;
+  font-size: 2em;
+  padding: 5px;
+}
+
+/* Emoji’s en styling afhankelijk van --show-fruits: true */
+scene:last-of-type cube face:nth-child(1)::before {
+  content: if(media(prefers-color-scheme: dark): "🍊";
+      else: ""
+    );
+}
+
+scene:last-of-type cube face:nth-child(2)::before {
+  content: if(media(prefers-color-scheme: dark): "🍓";
+      else: ""
+    );
+}
+
+scene:last-of-type cube face:nth-child(3)::before {
+  content: if(media(prefers-color-scheme: dark): "🍏";
+      else: ""
+    );
+}
+
+scene:last-of-type cube face:nth-child(4)::before {
+  content: if(media(prefers-color-scheme: dark): "🫐";
+      else: ""
+    );
+}
+
+scene:last-of-type cube face:nth-child(5)::before {
+  content: if(media(prefers-color-scheme: dark): "🥥";
+      else: ""
+    );
+}
+
+scene:last-of-type cube face:nth-child(6)::before {
+  content: if(media(prefers-color-scheme: dark): "🍋";
+      else: ""
+    );
 }

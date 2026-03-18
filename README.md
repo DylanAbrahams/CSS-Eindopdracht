@@ -371,3 +371,6 @@ Link: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
 
 Codepen 2x2 Rubiks Cube die de muis volgt met CSS
 Link: https://codepen.io/anthoviso/pen/QByoLB?editors=1100
+
+if()
+Link: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if
