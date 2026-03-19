@@ -1,5 +1,5 @@
 @font-face {
-  font-family: Owners;
+  font-family: Thuner;
   src: url(/styles/fonts/Thuner.otf);
 }
 
@@ -12,25 +12,26 @@ html {
   --black-color: black;
   --bright-color: rgba(255, 255, 255, 0.76);
 
---front-color: #e12626;
---back-color: #ff5e00;
---left-color: #5da8eb;
---right-color: #33d821;
---bottom-color: rgb(255, 253, 232);
---top-color: #fff200;
+  --front-color: #e12626;
+  --back-color: #ff5e00;
+  --left-color: #5da8eb;
+  --right-color: #33d821;
+  --bottom-color: rgb(255, 253, 232);
+  --top-color: #fff200;
 
---dark-front-color: #710000;
---dark-back-color: #823200;
---dark-left-color: #000065;
---dark-right-color: #006502;
---dark-bottom-color: #777777;
---dark-top-color: #b48a00;
+  --dark-front-color: #710000;
+  --dark-back-color: #823200;
+  --dark-left-color: #000065;
+  --dark-right-color: #006502;
+  --dark-bottom-color: #777777;
+  --dark-top-color: #b48a00;
   --dark-background: linear-gradient(0deg,
       oklch(15.334% 0.05875 258.765),
       oklch(30.307% 0.05689 347.1));
 
   --face-filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
   --dark-face-filter: drop-shadow(0 2px 3px rgb(212, 0, 255)) drop-shadow(0 2px 3px rgb(46, 255, 220));
+  --label-glow: rgb(212, 194, 255);
 }
 
 body {
@@ -46,22 +47,52 @@ body {
   background: if(media(prefers-color-scheme: dark): var(--dark-background);
       else: var(--background-color);
     );
+
 }
 
 div {
   display: flex;
   justify-content: center;
-  gap: 1em;
+  gap: 2em;
+  padding:1em;
 }
+
 
 label {
   padding: 10px 20px;
-  background: #333;
-  color: white;
+  color: if(media(prefers-color-scheme: dark): var(--label-glow); else: var(--black-color));
+  background: if(media(prefers-color-scheme: dark): var(--black-color); else: var(--bright-color));
   cursor: pointer;
   user-select: none;
+  position: relative;
   z-index: 100;
+  border-radius: 6px;
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  transition: all 0.2s ease;
+  text-shadow: if(media(prefers-color-scheme: dark): 0 0 5px var(--label-glow),
+      0 0 0 #000);
+  box-shadow: if(media(prefers-color-scheme: dark): 0 0 10px var(--label-glow),
+      0 0 0 #000);
 }
+
+label:hover {
+  outline: 2px solid currentColor;
+  text-shadow: if(media(prefers-color-scheme: dark): 0 0 8px var(--label-glow),
+      0 0 0 #000);
+  box-shadow: if(media(prefers-color-scheme: dark): 0 0 15px var(--label-glow),
+      0 0 0 #000);
+}
+
+input[type=radio] {
+  display: none;
+}
+
+input[type=range] {
+  accent-color:  if(media(prefers-color-scheme: dark): var(--label-glow); else: var(--default-color));
+}
+
+
 
 scene,
 cube,
@@ -72,21 +103,23 @@ face {
 
 scene {
   width: 100%;
-  height: 30%;
+  height: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
   perspective: 50em;
-  
+  order:-1;
 }
 
 cube {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 8em;
+  height: 8em;
   transform-style: preserve-3d;
-  transform: rotateX(-30deg) rotateY(45deg);
-
+  
+  transform: rotateX(-30deg)
+             rotateY(calc(var(--rotateY, 45) * 1deg - 45deg));
+  transform-origin: center center;
 }
 
 block {
@@ -94,6 +127,12 @@ block {
   width: 4em;
   height: 4em;
   transform-style: preserve-3d;
+}
+
+scene:nth-of-type(2)  block {
+  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg);
+  left:25%;
+  right:25%;
 }
 
 /* posities van blokjes */
@@ -144,14 +183,6 @@ block:nth-child(8) {
   --ty: 2em;
   --tz: -2em;
 }
-
-/* standaard transform voor alle blokken */
-scene:nth-of-type(2) block {
-  transform: translateX(var(--tx)) translateY(var(--ty)) translateZ(var(--tz)) rotateZ(0deg);
-}
-
-
-
 
 face {
   position: absolute;
@@ -953,8 +984,6 @@ div:nth-of-type(1):has(label:nth-of-type(5) input:checked) label:nth-of-type(1) 
 
 
 
-
-
 /* Alle code voor de blokjes bovenin */
 scene:first-of-type {
   display: flex;
@@ -969,7 +998,14 @@ scene:first-of-type {
     height: 4em;
     transform-style: preserve-3d;
     animation: floatAndDrift 12s ease-in-out infinite alternate;
-
+    transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
+    @media (max-width: 600px) {
+      width: 2.5em;
+      height: 2.5em;
+      block {
+        transform: scale(0.8)
+      }
+    }
   }
 
   cube:nth-of-type(1) {
@@ -1031,19 +1067,21 @@ scene:first-of-type {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    color: if(
-      media(prefers-color-scheme: dark): var(--bright-color);
-      else: var(--black-color);
+    color: if(media(prefers-color-scheme: dark): var(--bright-color);
+        else: var(--black-color);
       );
     backface-visibility: hidden;
 
     p {
-      font-family: Owners, sans-serif;
+      font-family: Thuner, sans-serif;
       font-size: 2.4em;
-      margin:auto;
     }
   }
+
+
 }
+
+
 
 /* Rotates cube on X and Y axes */
 @keyframes floatAndDrift {
@@ -1075,22 +1113,22 @@ scene:first-of-type {
 
 
 
-/* Faces standaard leeg */
+
+
 scene:last-of-type face::before {
   text-align: center;
-  font-size: 2em;
-  padding: 5px;
+  font-size: 3em;
+  opacity:0.5;
 }
 
-/* Emoji’s en styling afhankelijk van --show-fruits: true */
 scene:last-of-type cube face:nth-child(1)::before {
-  content: if(media(prefers-color-scheme: dark): "🍊";
+  content: if(media(prefers-color-scheme: dark): "🍓";
       else: ""
     );
 }
 
 scene:last-of-type cube face:nth-child(2)::before {
-  content: if(media(prefers-color-scheme: dark): "🍓";
+  content: if(media(prefers-color-scheme: dark): "🍊";
       else: ""
     );
 }
@@ -1108,13 +1146,13 @@ scene:last-of-type cube face:nth-child(4)::before {
 }
 
 scene:last-of-type cube face:nth-child(5)::before {
-  content: if(media(prefers-color-scheme: dark): "🥥";
+  content: if(media(prefers-color-scheme: dark): "🍋";
       else: ""
     );
 }
 
 scene:last-of-type cube face:nth-child(6)::before {
-  content: if(media(prefers-color-scheme: dark): "🍋";
+  content: if(media(prefers-color-scheme: dark): "🥥";
       else: ""
     );
 }
