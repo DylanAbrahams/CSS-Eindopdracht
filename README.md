@@ -379,20 +379,50 @@ Vandaag ben ik thuisgebleven aangezien ik morgen mijn mondeling heb voor zowel B
 
 Verder heb ik een slider toegevoegd waarmee je de kubus kan ronddraaien. Ik had eerst 2 sliders: 1 voor de X-as en 1 voor de Y-as maar uiteindelijk zag ik de toegevoegde waarde van een 2e slider niet echt aangezien het meer verwarrend is om te besturen dan nodig en omdat je bij een 2x2x2 dit niet per se nodig is. De slider werkt met de JavaScript die ik mocht gebruiken uit de codepen van Sanne. In de kubus heb ik in de transform in rotateY een calc gezet die de waarde van de slider met 1deg vermenigvuldigt en 45 graden er af haalt zodat hij standaard met de hoek naar voren richt. De value heb ik wel op 0 staan zodat de hoek aan het begin en einde van de slider komt.
 
-Verder heb ik nog gekeken naar de tekst/emojis in de blokjes. Deze stonden niet perfect in het midden. Ik had gesleuteld met paddings en text-align maar uiteindelijk was de makkelijkste optie voor mij om de font-size gewoon groter te maken en ze op die manier in het midden te krijgen.
+Daarnaast heb ik nog gekeken naar de tekst/emojis in de blokjes. Deze stonden niet perfect in het midden. Ik had gesleuteld met paddings en text-align maar uiteindelijk was de makkelijkste optie voor mij om de font-size gewoon groter te maken en ze op die manier in het midden te krijgen.
 
 Ook heb ik nog gekeken naar responsiveness. Ten eerste wilde ik ervoor zorgen dat de CUBIFY blokjes pasten op mobiel. Het was even verwarrend hoe ik de blokjes kleiner kon maken aangezien er meerdere elementen een rol spelen maar het makkelijkste vond ik om in een media query van max 600px de width/height van de kubussen omlaag te zetten waardoor ze dichter bijelkaar kwamen en een scale transform op .8 te zetten om de kubussen te verkleinen. Niet de meest semantische oplossing, maar toen ik zat de sleutelen met de grootte van de faces en de blocks liep het niet helemaal lekker, dus heb ik hiervoor gekozen.
 
-Verder wilde ik nog de divs met hun labels goed zetten. Helaas is dit niet helemaal gelukt. Ik heb ervoor gezorgd dat alles op mobiel in beeld is, maar de labels staan niet overal waar ik ze zou willen hebben. Het zijn 5 divs met daarin 5 labels, waarvan de meeste display:none hebben. Ik heb geprobeerd om css te schrijven waardoor de divs geen ruimte innemen als ze geen zichtbare labels hebben maar dat was niet gelukt zonder aan de andere code te moeten sleutelen. Dus de knoppen bewegen de hele tijd elke keer dat je de kubus ronddraait. Verder had ik ze graag iets meer bij elkaar gewilt. Ik had geprobeerd om ze in een aparte section te zetten, maar daardoor deed de kubus het niet meer en ik heb geen tijd meer om daar een oplossing voor te vinden. Wat ik nu heb werkt maar had wel nog wat beter gekund.
+De kubus stond niet perfect in het midden van het scherm. Ook draaide hij niet lekker om zijn middelpunt. Na veel te zoeken ben ik erachter gekomen dat als ik de left en right van de blokken op 25% zet, dit probleem oplost.
+
+Verder wilde ik nog de divs met hun labels goed zetten. Helaas is dit niet helemaal gelukt. Ik heb ervoor gezorgd dat alles op mobiel in beeld is, maar de labels staan niet overal waar ik ze zou willen hebben. Het zijn 5 divs met daarin 5 labels, waarvan de meeste display:none hebben. Ik heb geprobeerd om css te schrijven waardoor de divs geen ruimte innemen als ze geen zichtbare labels hebben maar dat was niet gelukt zonder aan de andere code te moeten sleutelen. Dus de knoppen bewegen de hele tijd elke keer dat je de kubus ronddraait. Verder had ik ze graag iets meer bij elkaar gewilt. Ik had geprobeerd om ze in een aparte section te zetten, maar daardoor deed de kubus het niet meer en ik heb geen tijd meer om daar een oplossing voor te vinden. Wat ik nu heb werkt maar had wel nog wat beter gekund. Ook had ik de divs nog onder de kubus geplaatst. Dit had ik met order gedaan, want ze verplaatsen in de HTML had ook de kubus gesloopt.
+
+Ik zag op Github dat mijn font nog niet werkte dus dat heb ik even gefixt. Hij probeerde mijn font uit https://dylanabrahams.github.io/ te halen ipv de specifieke repo. Is nu opgelost door de url aan te passen er puntjes voor te zetten.
 
 Als laatste wilde ik even kwijt dat ik sinds vandaag steeds een STATUS_BREAKPOINT krijg op mijn website. Ik weet zelf niet waardoor dat komt. Hierboven staat alles wat ik vandaag heb toegevoegd. Ik gebruik Chrome. Ik heb me niet verdiept in of dit aan de browser ligt, aan mijn laptop of wellicht aan het feit dat ik vanuit huis bezig ben maar ik wilde dit wel even noteren.
 
-## Week 3 Overzicht
+## Week 4 Overzicht
+Dit was de laatste week van het project. Ik heb de laatste loodjes gelegd en heb nu een compleet project.
+
+Ten eerste zie je nu alleen maar de labels van de radio buttons die relevant zijn ten op zichte van de button die je momenteel geselecteerd hebt. Je kan nu naar links, naar rechts, omlaag en omhoog draaien. De labels hebben nu ook wat meer styling. Verder zit er op elke knop een ::after die laat weten welke kant je opdraait. 
+
+<img src="img/readme-img/onzichtbare-labels.png" alt="Rubiks kubus" height=400>
+
+Verder heb ik nu een tweede thema. Het is een dark mode geworden aangezien ik gebruik wilde maken van if() en dit niet werkte met een knop. De knop werkte wel met :has() maar ik had maar ik wilde nog een if() erin hebben en dat ging anders niet zonder JavaScript. Op de dark mode worden alle kleuren aangepast en zit er tekst (emojis) op de blokken. Ik heb een neon look eraan gegeven want ik vond alleen donker wel een beetje saai. De emojis zou eerst voor een ander thema zijn maar ik heb ze voor de lol erin gelaten.
+ 
+<img src="img/readme-img/dark-theme.png" alt="Rubiks kubus" height=400>
+
+Als laatste feature heb ik nog een slider toegevoegd. Hier heb ik de JavaScript gebruikt die ik Sanna op zijn codepen had staan. Met de custom property heb ik ervoor gezorgd dat de Y rotatie bepaald wordt met de slider. Ik heb gekozen voor maar 1 slider omdat dat een stuk overzichtelijker is dan 2 en ik de toegevoegde waarde van een 2e slider voor de hoogte niet echt in zie. Je kan nu de rotatie van de kubus bepalen tijdens het draaien.
+
+<img src="img/readme-img/slider-kubus.png" alt="Rubiks kubus" height=400>
+
+Verder heb ik nog me nog veel bezig gehouden met responsiviteit. In mijn dag 8 overzicht staat hier meer detail over wat ik wel/niet heb kunnen doen. Lang verhaal kort: ik heb gekeken naar de labels, de kubus en de titel en hoe ze passen in de mobiele versie.
+
+<img src="img/readme-img/mobile-versie.png" alt="Rubiks kubus" height=400>
+
 
 ## Eindreflectie
 Ik ben zeer tevreden over wat ik de afgelopen maand heb gemaakt. Ik heb veel geleerd over wat je met CSS kan, maar ook zeker wat je niet kan. Het was een goede challenge om een Rubiks kubus in elkaar te moeten zetten zonder de hulp van JavaScript. Om niet dynamisch de posities en rotaties van de blokken te kunnen aanpassen maar overal een exacte waarde aan te moeten geven was niet makkelijk. 
 
 Verder heb ik ook meerdere keuzes gegeven: je kunt 4 (5 als je 360 graden meetelt) kanten kiezen om te draaien en vanuit daar een andere kant ook 4 (of 5) keer draaien. Ik had ook kunnen kiezen om maar 1 draai werkend te maken en deze dan een specifieke route te geven om een 3x3x3 op te lossen. Dan had ik wel meerdere soorten draaien toe kunnen voegen en het met een 3x3x3 kunnen doen. Wat ik hier heb is 25 verschillende opties voor een 2x2x2. Voor elke optie moest ik de exacte positie en rotatie van 6 verschillende blokjes bepalen. Dit was pittig om te doen. Ik had eigenlijk voor elke radio steeds moeten kijken welk specifiek blok op welke specifieke plek moet en handmatig deze waardes ingevuld.
+
+Daarnaast ben ik blij met de sensational title. Ik vind hem wel passend en hij valt wel op bovenin de pagina. De animatie die er op staat vind ik ook wel passen bij de kleuren, het geeft een beetje een ruimte gevoel. Ik ben er blij mee.
+
+Voor mijn tweede thema heb ik een dark mode gemaakt aangezien ik gebruik wilde maken van een if() in CSS. In eerste instantie vond ik het een redelijk saai thema maar ik heb er wel wat leuks mee kunnen maken. Ik heb de knoppen en de blokken een neon look gegeven waardoor ze een stuk meer opvallen. Nu ziet de dark mode er ook een stuk unieker uit en voelt de light mode juist heel simpel. Ik ben blij met hoe het gelukt is, vooral omdat ik het in maar anderhalve dag heb kunnen doen.
+
+Ik ben zeker beter geworden in CSS. Vooral nesten is iets wat ik een stuk vaker ga doen, want het zorgt voor een stuk meer overzicht. Er is zeker nog veel ruimte voor optimalisatie in mijn CSS maar ik heb ervoor gekozen om het duidelijk te houden voor mezelf.
+
+Wat er verder nog beter kon zijn de divs/labels. De posities zitten niet helemaal lekker aangezien de divs zonder zichtbare labels nog steeds ruimte innemen. Verder heb ik het aanpassen van de groottes van de blokjes redelijk slordig gedaan door de scale aan te passen ipv de daadwerkelijke grootte. Er zijn genoeg van dat soort voorbeelden in mijn code waarin het wat netter kan.
 
 
 
@@ -411,8 +441,15 @@ Codepen https://codepen.io/web-dot-dev/pen/YPzgNrL
 Color-mix
 Link: https://developer.chrome.com/docs/css-ui/css-color-mix?hl=nl
 
+ChatGPT - Custom properties
+(voor context dit was toen ik een constante animatie had maar nog geen transitie voor een draai waarvan je van rotatie A naar B zou gaan)
+Hoe kun je de blokken laten draaien vanaf de positie waar ze waren ipv hun beginpunt?
+
 :has()
 Link: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:has
+
+ChatGPT - FloatAndDrift Animatie + Delay
+Prompt: Van deze 2 animaties kun speelt alleen de onderste af & kun je elk blok een delay geven voor de animatie 
 
 Codepen 2x2 Rubiks Cube die de muis volgt met CSS
 Link: https://codepen.io/anthoviso/pen/QByoLB?editors=1100
@@ -422,3 +459,5 @@ Link: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if
 
 JavaScript Slider
 Link: https://codepen.io/shooft/pen/LYaexbj
+
+Ik heb ChatGPT vaak gebruikt om mijn code uit te breiden. Ik heb bijvoorbeeld code waarin er bepaald wordt of div 1 een radio heeft die gecheckt is dmv :has(). Vervolgens stuur ik die code samen met mijn HTML en krijg ik het terug voor elke optie. Vaak moet ik dan nog sleutelen aan de inhoud maar heb ik wel een template om in te werken.

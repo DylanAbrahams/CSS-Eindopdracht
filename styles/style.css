@@ -138,6 +138,7 @@ scene:nth-of-type(2)  block {
 }
 
 /* posities van blokjes */
+/* Deze custom properties zijn bedacht door chatgpt waardoor ik ze later heb kunnen bewegen met de animaties */
 block:nth-child(1) {
   --tx: -2em;
   --ty: -2em;
@@ -294,7 +295,8 @@ block:nth-child(8)>face:nth-child(6) {
 
 
 
-
+/* Met code als dit heb ik ChatGPT gebruikt om te dupliceren en voor elke specifieke query een aparte
+ regel te schrijven, ik heb de inhoud wel steeds zelf aangepast aangezien Chat dat steeds fout deed  */
 
 /* --- F0° T0° --- */
 div:nth-of-type(1):has(label:nth-of-type(1) input:checked)~scene block:nth-child(1),
@@ -1086,6 +1088,7 @@ scene:first-of-type {
 
 
 /* Rotates cube on X and Y axes */
+/* Ik heb ChatGPT gebruikt om deze animaties werkend te maken bij elkaar, ik had eerst 2 verschillende animaties, verder heeft Chat ook de delay erin gezet */
 @keyframes floatAndDrift {
   0% {
     transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px);
