@@ -383,14 +383,18 @@ Verder heb ik nog gekeken naar de tekst/emojis in de blokjes. Deze stonden niet 
 
 Ook heb ik nog gekeken naar responsiveness. Ten eerste wilde ik ervoor zorgen dat de CUBIFY blokjes pasten op mobiel. Het was even verwarrend hoe ik de blokjes kleiner kon maken aangezien er meerdere elementen een rol spelen maar het makkelijkste vond ik om in een media query van max 600px de width/height van de kubussen omlaag te zetten waardoor ze dichter bijelkaar kwamen en een scale transform op .8 te zetten om de kubussen te verkleinen. Niet de meest semantische oplossing, maar toen ik zat de sleutelen met de grootte van de faces en de blocks liep het niet helemaal lekker, dus heb ik hiervoor gekozen.
 
-Verder wilde ik nog de divs met hun labels goed zetten. Helaas is dit niet helemaal gelukt. Ik heb ervoor gezorgd dat alles op mobiel in beeld is, maar de labels staan niet overal waar ik ze zou willen hebben. Het zijn 5 divs met daarin 5 labels, waarvan de meeste display:none hebben. Ik heb geprobeerd om css te schrijven waardoor de divs geen ruimte innemen als ze geen zichtbare labels hebben maar dat was niet gelukt zonder aan de andere code te moeten sleutelen. Verder had ik ze graag iets meer bij elkaar gewilt. Ik had geprobeerd om ze in een aparte section te zetten, maar daardoor deed de kubus het niet meer en ik heb geen tijd meer om daar een oplossing voor te vinden. Wat ik nu heb werkt maar had wel nog wat beter gekund.
+Verder wilde ik nog de divs met hun labels goed zetten. Helaas is dit niet helemaal gelukt. Ik heb ervoor gezorgd dat alles op mobiel in beeld is, maar de labels staan niet overal waar ik ze zou willen hebben. Het zijn 5 divs met daarin 5 labels, waarvan de meeste display:none hebben. Ik heb geprobeerd om css te schrijven waardoor de divs geen ruimte innemen als ze geen zichtbare labels hebben maar dat was niet gelukt zonder aan de andere code te moeten sleutelen. Dus de knoppen bewegen de hele tijd elke keer dat je de kubus ronddraait. Verder had ik ze graag iets meer bij elkaar gewilt. Ik had geprobeerd om ze in een aparte section te zetten, maar daardoor deed de kubus het niet meer en ik heb geen tijd meer om daar een oplossing voor te vinden. Wat ik nu heb werkt maar had wel nog wat beter gekund.
 
 Als laatste wilde ik even kwijt dat ik sinds vandaag steeds een STATUS_BREAKPOINT krijg op mijn website. Ik weet zelf niet waardoor dat komt. Hierboven staat alles wat ik vandaag heb toegevoegd. Ik gebruik Chrome. Ik heb me niet verdiept in of dit aan de browser ligt, aan mijn laptop of wellicht aan het feit dat ik vanuit huis bezig ben maar ik wilde dit wel even noteren.
 
 ## Week 3 Overzicht
 
 ## Eindreflectie
-Ik ben zeer tevreden over wat ik de afgelopen maand heb gemaakt
+Ik ben zeer tevreden over wat ik de afgelopen maand heb gemaakt. Ik heb veel geleerd over wat je met CSS kan, maar ook zeker wat je niet kan. Het was een goede challenge om een Rubiks kubus in elkaar te moeten zetten zonder de hulp van JavaScript. Om niet dynamisch de posities en rotaties van de blokken te kunnen aanpassen maar overal een exacte waarde aan te moeten geven was niet makkelijk. 
+
+Verder heb ik ook meerdere keuzes gegeven: je kunt 4 (5 als je 360 graden meetelt) kanten kiezen om te draaien en vanuit daar een andere kant ook 4 (of 5) keer draaien. Ik had ook kunnen kiezen om maar 1 draai werkend te maken en deze dan een specifieke route te geven om een 3x3x3 op te lossen. Dan had ik wel meerdere soorten draaien toe kunnen voegen en het met een 3x3x3 kunnen doen. Wat ik hier heb is 25 verschillende opties voor een 2x2x2. Voor elke optie moest ik de exacte positie en rotatie van 6 verschillende blokjes bepalen. Dit was pittig om te doen. Ik had eigenlijk voor elke radio steeds moeten kijken welk specifiek blok op welke specifieke plek moet en handmatig deze waardes ingevuld.
+
+
 
 ## Bronnenlijst
 

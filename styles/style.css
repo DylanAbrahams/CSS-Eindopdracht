@@ -1,6 +1,8 @@
 @font-face {
   font-family: Thuner;
-  src: url(/styles/fonts/Thuner.otf);
+  src: url('../styles/fonts/Thuner.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 html {
