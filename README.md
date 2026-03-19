@@ -349,7 +349,48 @@ Ik had verder nog een achtergrond toegevoegd aan de website. Ik heb een gradient
 Vrijdag gesprek met clubje 5 + Sanne
 Iedereen heeft laten zien wat hij/zij had. Ik ben wel tevreden met wat ik heb gemaakt al wordt het helaas geen 3x3x3 meer. Ik ga in ieder geval er nog voor zorgen dat alleen de relevante buttons zichtbaar zullen zijn. Hiervoor moet ik mijn code die ik al heb voor 5 buttons laten werken op 25 buttons en meerdere voor elk. Waarschijnlijk zal ik voor elke mogelijkheid een aparte lijst met buttons moeten geven. Verder wil iig nog een thema toevoegen waarbij ik if() wil gebruiken om aan mijn eisen te voldoen en ervoor zorgen dat alles op zowel desktop als mobiel goed in beeld blijft. Misschien nog wat kleuren mooi maken op de knoppen en de CUBIFY letters een passend lettertype geven met misschien een animatie er nog bij. 
 
+## Dag 7 (18 maart)
+Vandaag heb ik me gefocust op alle alle elementen die nog verplicht zijn voor de eindopdracht. Ten eerste heb ik ervoor gezorgd dat elke radio button alleen zichtbaar is wanneer je er met 1 draai naartoe zou kunnen draaien. Bijvoorbeeld bij F90T90 kun je alleen naar F0T00 of naar F270T90 draaien. Verder kun je op de bovenste laag kiezen of je de voorkant of de bovenkant wil draaien. Je zult altijd dus minimaal 2 of maximaal 4 knoppen in beeld hebben.
 
+Dit was me alleen niet alleen gelukt. Ik kreeg het niet voor elkaar om knoppen tevoorschijn te laten komen die niet indezelfde div zit als de knop die ingedrukt is. Uiteindelijk heeft Nils me geholpen en kwam hij met het idee om de :has() op de body te zetten ipv op de div. We hadden eerst het idee om 2 :has() in elkaar te zetten wat niet werkte en later kwamen we erachter dat als je een :has() op de body zet het ook geldt voor de rest want een body bevat inderdaad een geselecteerde radio op die locatie. Nu kun je alleen de relevante knoppen indrukken.
+
+Verder heb ik gewerkt aan de titel. Ik heb een font toegevoegd genaamd Thuner die goed paste bij het blokjes thema. Verder waren de blokken niet goed gecentereerd. Nils had me ook hierbij geholpen. Uiteindelijk was het een overzicht van mij want de transform die plaatsvindt op de blokjes van het hoofdkubus gelde ook voor de blokjes bovenin. Ik heb die dus specifiek gemaakt voor de 2e scene.
+
+Daarnaast had ik nog 2 eisen nodig: een 2e thema en nog een nieuwe CSS architecture feature. Ik had al nesting in mijn CSS; ik vind nesten heel handig en het zorgt voor een fijn overzicht. Mijn idee was om als 2e themas de kleuren te veranderen naar fruit emojis, elk in de kleur die past bij de kleur van het bijhorende blokje. Het idee was dat ik een checkbox kon aanvinken en met if()'s de CSS zou worden aangepast. Helaas is dit niet gelukt. Het verste waar ik was gekomen is een custom property te gebruiken. Als deze op true stond, zou alle styling worden aangepast naar het 2e thema. Het probleem was dat het aanpassen van zo'n property JavaScript nodig had. Dit was dus een no-go. 
+
+Het was me gelukt om de knop te laten werken met :has() op een vergelijkbare manier als met de radio buttons, maar met deze code zou ik niks hebben aan if() en ik wil if() wel graag gebruiken. Uiteindelijk heb ik besloten om de knop te schrappen en het thema te veranderen naar dark mode. Niet het meest creatieve thema maar ik heb er wel wat leuks mee weten te maken. Ten eerste zijn alle kleuren natuurlijk donkerder geworden waardoor het nu nog meer lijkt op een nacht/ruimte sfeer. Daarnaast heb ik de schaduw van de blokjes nu aangepast naar 2 lichte kleuren waardoor ze nu een neon/glow-in-the-dark look hebben. Ik ben er blij mee. Verder heb ik bij de dark-theme nog de fruit emojis erop gelaten voor de lol om te laten zien dat het kan. Dit is gedaan met ::before's.
+
+Oh, en ik heb eindelijk de kleuren aangepast waardoor geel nu boven is en rood/blauw vooraan in beeld.
+
+### Checkout met Sabrina
+Ik werd vandaag gerandomized met Choice. Zij was niet aanwezig dus ik ben samengevoegd met Sabrina. Zij heeft een lopende robot gemaakt met 3 verschillende themas met een slider waarmee je de snelheid kan aanpassen. Zij is zo goed als klaar met haar opdracht. 
+
+Ik ga morgen wel nog de laatste loodjes leggen. Ik ga nog de radio knoppen styling geven. Verder ga ik kijken of de tekst in de blokjes nog meer in het midden kan en ik ga kijken naar responsiviteit. Als ik tijd over heb doe ik ook nog een slider toevoegen waarmee je de kubus kan ronddraaien.
+
+## Dag 8 (19 maart)
+
+To do:
+- Styling radios
+- Responsiveness
+- Tekst in het midden van de blokjes
+- Slider kubus rotatie
+
+Vandaag ben ik thuisgebleven aangezien ik morgen mijn mondeling heb voor zowel BT als CSS. Ik heb besloten om de laatste punten op de I te zetten en de laatste functies erin te zetten. Ik ben begonnen met de styling van de labels van de radio knoppen. Op de light mode ziet deze er aardig simpel uit. Ik heb gekozen voor een een lichtgrijze kleur met transparante borders eromheen. Ik vind het wel passen bij de "ruimte" sfeer die ik heb gemaakt met de achtergrond. Voor de dark versie heb ik ze neon gemaakt met een paarse glow (box shadow) eromheen op die aansluit op de styling van de kubussen. Verder heeft de tekst ook een subtiele glow. De tekst blijft sans-serif aangezien de knoppen nog goed leesbaar moeten blijven. Ik ben erg tevreden met de knoppen, vooral met de dark versie!
+
+Verder heb ik een slider toegevoegd waarmee je de kubus kan ronddraaien. Ik had eerst 2 sliders: 1 voor de X-as en 1 voor de Y-as maar uiteindelijk zag ik de toegevoegde waarde van een 2e slider niet echt aangezien het meer verwarrend is om te besturen dan nodig en omdat je bij een 2x2x2 dit niet per se nodig is. De slider werkt met de JavaScript die ik mocht gebruiken uit de codepen van Sanne. In de kubus heb ik in de transform in rotateY een calc gezet die de waarde van de slider met 1deg vermenigvuldigt en 45 graden er af haalt zodat hij standaard met de hoek naar voren richt. De value heb ik wel op 0 staan zodat de hoek aan het begin en einde van de slider komt.
+
+Verder heb ik nog gekeken naar de tekst/emojis in de blokjes. Deze stonden niet perfect in het midden. Ik had gesleuteld met paddings en text-align maar uiteindelijk was de makkelijkste optie voor mij om de font-size gewoon groter te maken en ze op die manier in het midden te krijgen.
+
+Ook heb ik nog gekeken naar responsiveness. Ten eerste wilde ik ervoor zorgen dat de CUBIFY blokjes pasten op mobiel. Het was even verwarrend hoe ik de blokjes kleiner kon maken aangezien er meerdere elementen een rol spelen maar het makkelijkste vond ik om in een media query van max 600px de width/height van de kubussen omlaag te zetten waardoor ze dichter bijelkaar kwamen en een scale transform op .8 te zetten om de kubussen te verkleinen. Niet de meest semantische oplossing, maar toen ik zat de sleutelen met de grootte van de faces en de blocks liep het niet helemaal lekker, dus heb ik hiervoor gekozen.
+
+Verder wilde ik nog de divs met hun labels goed zetten. Helaas is dit niet helemaal gelukt. Ik heb ervoor gezorgd dat alles op mobiel in beeld is, maar de labels staan niet overal waar ik ze zou willen hebben. Het zijn 5 divs met daarin 5 labels, waarvan de meeste display:none hebben. Ik heb geprobeerd om css te schrijven waardoor de divs geen ruimte innemen als ze geen zichtbare labels hebben maar dat was niet gelukt zonder aan de andere code te moeten sleutelen. Verder had ik ze graag iets meer bij elkaar gewilt. Ik had geprobeerd om ze in een aparte section te zetten, maar daardoor deed de kubus het niet meer en ik heb geen tijd meer om daar een oplossing voor te vinden. Wat ik nu heb werkt maar had wel nog wat beter gekund.
+
+Als laatste wilde ik even kwijt dat ik sinds vandaag steeds een STATUS_BREAKPOINT krijg op mijn website. Ik weet zelf niet waardoor dat komt. Hierboven staat alles wat ik vandaag heb toegevoegd. Ik gebruik Chrome. Ik heb me niet verdiept in of dit aan de browser ligt, aan mijn laptop of wellicht aan het feit dat ik vanuit huis bezig ben maar ik wilde dit wel even noteren.
+
+## Week 3 Overzicht
+
+## Eindreflectie
+Ik ben zeer tevreden over wat ik de afgelopen maand heb gemaakt
 
 ## Bronnenlijst
 
@@ -374,3 +415,6 @@ Link: https://codepen.io/anthoviso/pen/QByoLB?editors=1100
 
 if()
 Link: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if
+
+JavaScript Slider
+Link: https://codepen.io/shooft/pen/LYaexbj
